@@ -1,12 +1,12 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import Product from '../components/Product';
 import products from '../products';
 
-const Home = () => {
+const HomeScreen = () => {
   return (
     <>
-      <h1>Latest Products</h1>
+      <h1 className="text-center">Remeras Nuevas</h1>
       <Row>
         {products.map((product) => (
           <Col sm={12} md={6} lg={4} xl={3}>
@@ -18,4 +18,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeScreen;

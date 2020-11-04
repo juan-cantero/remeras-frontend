@@ -1,13 +1,8 @@
 import React from 'react';
-import Home from './screens/Home';
-import Layout from './components/ui-layout/Layout';
+import AppRouter from './Routers/AppRouter';
 
 const App = () => {
-  return (
-    <Layout>
-      <Home />
-    </Layout>
-  );
+  return <AppRouter />;
 };
 
 export default App;

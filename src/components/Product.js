@@ -1,26 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Product = ({ product }) => {
   return (
-    <Card className="my-3 py-3 rounded">
-      <a href={`product/${product._id}`}>
+    <Card className="my-3 py-3 px-2 rounded">
+      <Link to={`product/${product._id}`}>
         <Card.Img src={product.image} variant="top" />
-      </a>
-      <Card.Body>
-        <a href={`product/${product._id}`}>
+      </Link>
+      <Card.Body className="text-center">
+        <Link to={`product/${product._id}`}>
           <Card.Title className="text-dark" as="div">
-            <strong>{product.name}</strong>
+            {product.name}
           </Card.Title>
-        </a>
+        </Link>
+
         <Card.Text as="div">
-          <div className="py-3">
-            {product.rating}-from-
-            {product.numReviews}
-          </div>
+          <h3 className="text-dark">{'$' + product.price}</h3>
         </Card.Text>
-        <Card.Text as="div">{product.price}</Card.Text>
       </Card.Body>
     </Card>
   );
