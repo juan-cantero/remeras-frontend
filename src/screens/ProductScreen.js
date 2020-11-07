@@ -1,4 +1,5 @@
-import React from 'react';
+import Axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import {
   Row,
   Col,
@@ -7,16 +8,25 @@ import {
   ListGroupItem,
   Card,
   Button,
+  Container,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Price from '../components/Price';
-import Product from '../components/Product';
-import products from '../products';
 
 const ProductScreen = ({ match }) => {
-  const product = products.find((product) => product._id === match.params.id);
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await Axios.get(
+        `http://localhost:5000/api/product/${match.params.id}`
+      );
+      setProduct(data);
+    };
+    fetchProduct();
+  }, [match]);
+
   return (
-    <>
+    <Container>
       <Link className="btn btn-light my-3" to="/">
         Volver
       </Link>
@@ -27,7 +37,7 @@ const ProductScreen = ({ match }) => {
         <Col md={3}>
           <ListGroup variant="flush">
             <ListGroupItem>
-              <h3>{product.name}</h3>
+              <h3 className="text-center">{product.name}</h3>
             </ListGroupItem>
             <ListGroupItem>
               <Price price={product.price} />
@@ -55,7 +65,7 @@ const ProductScreen = ({ match }) => {
           </Card>
         </Col>
       </Row>
-    </>
+    </Container>
   );
 };
 
