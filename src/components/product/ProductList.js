@@ -1,17 +1,8 @@
-import Axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import Product from './Product';
 
-const ProductList = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await Axios.get('http://localhost:5000/api/product');
-      setProducts(data);
-    };
-    fetchProducts();
-  }, []);
+const ProductList = ({ products }) => {
   return (
     <Row>
       {products.map((product) => (
