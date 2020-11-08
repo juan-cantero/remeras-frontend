@@ -1,5 +1,4 @@
-import Axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   Row,
   Col,
@@ -10,21 +9,22 @@ import {
   Button,
   Container,
 } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Price from '../components/Price';
+import { getProductDetail } from '../state/products/productState';
 
 const ProductScreen = ({ match }) => {
-  const [product, setProduct] = useState({});
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const { data } = await Axios.get(
-        `http://localhost:5000/api/product/${match.params.id}`
-      );
-      setProduct(data);
-    };
-    fetchProduct();
-  }, [match]);
+  const { product, loading, error } = useSelector(
+    (state) => state.productDetail
+  );
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getProductDetail(match.params.id));
+  }, [dispatch, match]);
+
+  if (!product) return <h1>loading..</h1>;
   return (
     <Container>
       <Link className="btn btn-light my-3" to="/">
