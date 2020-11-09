@@ -10,7 +10,9 @@ const PRODUCT_DETAIL_FAIL = 'PRODUCT_DETAIL-FAIL';
 export const getProductDetail = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAIL_REQUEST });
-    const { data } = await Axios.get(`http://localhost:5000/api/product/${id}`);
+    const { data } = await Axios.get(
+      `http://192.168.0.104:5000/api/product/${id}`
+    );
     dispatch({ type: PRODUCT_DETAIL_SUCCESS, payload: data.product });
   } catch (error) {
     dispatch({
