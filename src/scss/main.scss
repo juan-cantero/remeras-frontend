@@ -6,3 +6,9 @@
 //base
 
 @import './base/base';
+
+//components
+@import './Components/Cart.scss';
+@import './Components/ui-layout/Layout';
+@import './Components/ui-layout/Footer';
+@import './Components/ui-layout/Modal';

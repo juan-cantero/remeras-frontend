@@ -4,6 +4,7 @@ import React from 'react';
 import Layout from '../components/ui-layout/Layout';
 import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../screens/ProductScreen';
+import CartScreen from '../screens/CartScreen';
 
 const AppRouter = () => {
   return (
@@ -11,6 +12,7 @@ const AppRouter = () => {
       <Layout>
         <Route path="/" exact component={HomeScreen} />
         <Route path="/product/:id" component={ProductScreen} />
+        <Route path="/cart" component={CartScreen} />
       </Layout>
     </Router>
   );

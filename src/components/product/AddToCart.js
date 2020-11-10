@@ -6,12 +6,12 @@ import {
   Col,
   ListGroupItem,
   Button,
-  FormControl,
   FormCheck,
 } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../state/cart/cartState';
 import CartModal from '../Cart/CartModal';
+import QuantitySelector from '../ui-layout/QuantitySelector';
 
 const AddToCart = ({ product }) => {
   const [size, setSize] = useState('s');
@@ -26,7 +26,6 @@ const AddToCart = ({ product }) => {
     setSize(value);
   };
   const handleSelectChange = (event) => {
-    event.preventDefault();
     const { value } = event.target;
     setQuantity(value);
   };
@@ -87,15 +86,11 @@ const AddToCart = ({ product }) => {
             <Row>
               <Col>Cantidad</Col>
               <Col>
-                <FormControl as="select" value="" onChange={handleSelectChange}>
-                  {[...Array(product.stock[size]).keys()].map((x) => {
-                    return (
-                      <option key={x + 1} value={x + 1}>
-                        {x + 1}
-                      </option>
-                    );
-                  })}
-                </FormControl>
+                <QuantitySelector
+                  quantity={product.stock[size]}
+                  handleSelectChange={handleSelectChange}
+                  selected={quantity}
+                />
               </Col>
             </Row>
           </ListGroupItem>
@@ -103,8 +98,9 @@ const AddToCart = ({ product }) => {
 
         <ListGroupItem>
           <Button
-            className="btn-block btn-secondary"
+            className="btn-block"
             type="button"
+            variant="secondary"
             disabled={product.stock[size] === 0}
             onClick={handleAddToCart}
           >

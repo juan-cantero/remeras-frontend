@@ -7,9 +7,7 @@ const Layout = (props) => {
   return (
     <>
       <Header />
-      <Container>
-        <main className="py-3">{props.children}</main>
-      </Container>
+      <main className="Layout">{props.children}</main>
       <Footer />
     </>
   );

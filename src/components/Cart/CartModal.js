@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Cart from './Cart';
 
 const CartModal = ({ show, handleClose }) => {
+  const history = useHistory();
+  const handleGoToCart = () => {
+    history.push('/cart');
+  };
+
   return (
     <>
       <Modal
@@ -11,7 +16,6 @@ const CartModal = ({ show, handleClose }) => {
         onHide={handleClose}
         centered={false}
         size="lg"
-        backdrop={false}
         keyboard={false}
         styles={{ right: 0 }}
       >
@@ -25,7 +29,7 @@ const CartModal = ({ show, handleClose }) => {
           <Button variant="secondary" onClick={handleClose}>
             Seguir viendo
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="success" onClick={handleGoToCart}>
             Ir al carrito de compras
           </Button>
         </Modal.Footer>
