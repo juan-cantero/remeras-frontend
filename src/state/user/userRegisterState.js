@@ -3,6 +3,7 @@ const { default: Axios } = require('axios');
 const USER_REGISTER_REQUEST = 'USER_REGISTER_REQUEST';
 const USER_REGISTER_FAILS = 'USER_REGISTER_FAILS';
 const USER_REGISTER_SUCCESS = 'USER_REGISTER_SUCCESS';
+const USER_CLEAN_INFO_IN_LOGOUT = 'USER_CLEAN_INFO_IN_LOGOUT';
 
 // Action
 
@@ -30,7 +31,9 @@ export const register = (name, email, password) => async (
     });
   }
 };
-
+export const clearUserInfoInLogOut = () => (dispatch) => {
+  dispatch({ type: USER_CLEAN_INFO_IN_LOGOUT });
+};
 //reducer
 
 const userRegisterReducer = (state = {}, action) => {
@@ -41,7 +44,8 @@ const userRegisterReducer = (state = {}, action) => {
       return { loading: false, userInfo: action.payload };
     case USER_REGISTER_FAILS:
       return { loading: false, error: action.payload };
-
+    case USER_CLEAN_INFO_IN_LOGOUT:
+      return {};
     default:
       return state;
   }
