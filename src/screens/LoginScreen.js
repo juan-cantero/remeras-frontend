@@ -43,7 +43,7 @@ const LoginScreen = ({ location, history }) => {
 
   return (
     <FormContainer>
-      <h1>Sign in</h1>
+      <h1>Entrar</h1>
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={handleFormSubmit}>
@@ -51,7 +51,7 @@ const LoginScreen = ({ location, history }) => {
           <FormLabel>Tu email</FormLabel>
           <FormControl
             type="email"
-            placeholder="Enter email"
+            placeholder="Ingresar email"
             value={email}
             name="email"
             onChange={handleEmailChange}
@@ -61,7 +61,7 @@ const LoginScreen = ({ location, history }) => {
           <FormLabel>Tu contraseña</FormLabel>
           <FormControl
             type="password"
-            placeholder="Enter your password"
+            placeholder="Ingresar password"
             value={password}
             name="password"
             onChange={handlePasswordChange}

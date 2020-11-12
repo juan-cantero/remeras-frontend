@@ -13,7 +13,6 @@ import { Link } from 'react-router-dom';
 import FormContainer from '../components/ui-layout/FormContainer';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
-import { login } from '../state/user/userLoginState';
 import { register } from '../state/user/userRegisterState';
 
 const RegisterScreen = ({ location, history }) => {
