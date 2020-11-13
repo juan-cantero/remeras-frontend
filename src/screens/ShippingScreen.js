@@ -12,10 +12,10 @@ import FormContainer from '../components/ui-layout/FormContainer';
 import { saveShippingAdress } from '../state/cart/cartState';
 
 const ShippingScreen = ({ history }) => {
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [locality, setLocality] = useState('');
-  const [postalCode, setPostalCode] = useState('');
+  const [address, setAddress] = useState(null);
+  const [city, setCity] = useState(null);
+  const [locality, setLocality] = useState(null);
+  const [postalCode, setPostalCode] = useState(null);
   const dispatch = useDispatch();
   const handleAdressChange = (e) => {
     setAddress(e.target.value);

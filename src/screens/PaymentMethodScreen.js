@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   Col,
@@ -11,15 +11,18 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import CheckOutSteps from '../components/checkOut/CheckOutSteps';
 import FormContainer from '../components/ui-layout/FormContainer';
-import { savePaymentMethod, saveShippingAdress } from '../state/cart/cartState';
+import { savePaymentMethod } from '../state/cart/cartState';
 
 const PaymentMethodScreen = ({ history }) => {
   const { shippingAdress } = useSelector((state) => state.cart);
-  if (!shippingAdress) {
-    history.push('/shipping');
-  }
 
-  const [paymentMethod, setPaymentMethod] = useState('');
+  // useEffect(() => {
+  //   if (!shippingAdress.adress) {
+  //     history.push('/shipping');
+  //   }
+  // }, [shippingAdress, history]);
+
+  const [paymentMethod, setPaymentMethod] = useState('efectivo');
   const dispatch = useDispatch();
 
   const handleSetPaymentMethod = (e) => {

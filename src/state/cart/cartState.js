@@ -46,7 +46,10 @@ export const savePaymentMethod = (paymentMethod) => (dispatch) => {
 
 //REDUCER
 
-const cartReducer = (state = { cartItems: [], shippingAdress: {} }, action) => {
+const cartReducer = (
+  state = { cartItems: [], shippingAdress: {}, paymentMethod: '' },
+  action
+) => {
   switch (action.type) {
     case CART_ADD_ITEM:
       const product = action.payload;
