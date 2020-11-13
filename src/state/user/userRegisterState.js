@@ -7,14 +7,11 @@ const USER_CLEAN_INFO_IN_LOGOUT = 'USER_CLEAN_INFO_IN_LOGOUT';
 
 // Action
 
-export const register = (name, email, password) => async (
-  dispatch,
-  getState
-) => {
+export const register = (name, email, password) => async (dispatch) => {
   dispatch({ type: USER_REGISTER_REQUEST });
   try {
     const { data } = await Axios.post(
-      'http://localhost:5000/api/user/',
+      'http://192.168.0.104:5000/api/user/',
       { name, email, password },
       {
         headers: { 'CONTENT-TYPE': 'application/json' },

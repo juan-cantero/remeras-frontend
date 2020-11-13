@@ -11,7 +11,7 @@ export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
     const { data } = await Axios.post(
-      'http://localhost:5000/api/user/login',
+      'http://192.168.0.104:5000/api/user/login',
       { email, password },
       {
         headers: { 'CONTENT-TYPE': 'application/json' },

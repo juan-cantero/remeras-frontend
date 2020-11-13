@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ShippingItem = ({ shippingAdress }) => {
-  const { address, city, locality, postalCode } = shippingAdress;
+const ShippingItem = ({ shippingAddress }) => {
+  const { address, city, locality, postalCode } = shippingAddress;
   return (
     <>
       <h2>Envio</h2>

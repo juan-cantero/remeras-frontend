@@ -9,7 +9,7 @@ import {
 import { useDispatch } from 'react-redux';
 import CheckOutSteps from '../components/checkOut/CheckOutSteps';
 import FormContainer from '../components/ui-layout/FormContainer';
-import { saveShippingAdress } from '../state/cart/cartState';
+import { saveShippingAddress } from '../state/cart/cartState';
 
 const ShippingScreen = ({ history }) => {
   const [address, setAddress] = useState(null);
@@ -35,7 +35,7 @@ const ShippingScreen = ({ history }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(saveShippingAdress({ address, locality, city, postalCode }));
+    dispatch(saveShippingAddress({ address, locality, city, postalCode }));
     history.push('/payment');
   };
   return (

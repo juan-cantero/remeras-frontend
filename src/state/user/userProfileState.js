@@ -19,7 +19,7 @@ export const getUserDetails = () => async (dispatch, getState) => {
       },
     };
     const { data } = await Axios.get(
-      `http://localhost:5000/api/user/profile`,
+      `http://192.168.0.104:5000/api/user/profile`,
       config
     );
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data });

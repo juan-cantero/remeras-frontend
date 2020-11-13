@@ -2,7 +2,7 @@ import Axios from 'axios';
 
 const CART_ADD_ITEM = 'CART_ADD_ITEM';
 const CART_REMOVE_ITEM = 'CART_REMOVE_ITEM';
-const CART_SAVE_SHIPPING_ADRESS = 'CART_SAVE_SHIPPING_ADRESS';
+const CART_SAVE_SHIPPING_ADDRESS = 'CART_SAVE_SHIPPING_ADDRESS';
 const CART_SAVE_PAYMENT_METHOD = 'CART_SAVE_PAYMENT_METHOD';
 
 //ACTIONS
@@ -34,9 +34,9 @@ export const removeFromCart = (id, size) => (dispatch, getState) => {
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
 };
 
-export const saveShippingAdress = (shippingAdressData) => (dispatch) => {
-  dispatch({ type: CART_SAVE_SHIPPING_ADRESS, payload: shippingAdressData });
-  localStorage.setItem('shippingAdress', JSON.stringify(shippingAdressData));
+export const saveShippingAddress = (shippingAddressData) => (dispatch) => {
+  dispatch({ type: CART_SAVE_SHIPPING_ADDRESS, payload: shippingAddressData });
+  localStorage.setItem('shippingAddress', JSON.stringify(shippingAddressData));
 };
 
 export const savePaymentMethod = (paymentMethod) => (dispatch) => {
@@ -47,7 +47,7 @@ export const savePaymentMethod = (paymentMethod) => (dispatch) => {
 //REDUCER
 
 const cartReducer = (
-  state = { cartItems: [], shippingAdress: {}, paymentMethod: '' },
+  state = { cartItems: [], shippingAddress: {}, paymentMethod: '' },
   action
 ) => {
   switch (action.type) {
@@ -79,10 +79,10 @@ const cartReducer = (
           (p) => p.id !== item.id || p.size !== item.size
         ),
       };
-    case CART_SAVE_SHIPPING_ADRESS:
+    case CART_SAVE_SHIPPING_ADDRESS:
       return {
         ...state,
-        shippingAdress: action.payload,
+        shippingAddress: action.payload,
       };
     case CART_SAVE_PAYMENT_METHOD:
       return { ...state, paymentMethod: action.payload };

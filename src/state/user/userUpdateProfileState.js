@@ -20,7 +20,7 @@ export const updateProfile = (user) => async (dispatch, getState) => {
 
   try {
     const { data } = await Axios.put(
-      'http://localhost:5000/api/user/profile',
+      'http://192.168.0.104:5000/api/user/profile',
       user,
       config
     );

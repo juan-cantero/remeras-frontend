@@ -8,7 +8,7 @@ class PriceCalculator {
   }
 
   static addDecimals(price) {
-    return (Math.round(price * 100) / 100).toFixed(2);
+    return +(Math.round(price * 100) / 100).toFixed(2);
   }
 
   getItemsPrice() {
@@ -16,7 +16,7 @@ class PriceCalculator {
       (acc, item) => acc + Number(item.price) * Number(item.quantity),
       0
     );
-    return PriceCalculator.addDecimals(total);
+    return +PriceCalculator.addDecimals(total);
   }
 
   getShippingPrice() {
@@ -25,7 +25,7 @@ class PriceCalculator {
 
   getTotalPrice() {
     const total = this.getItemsPrice() + this.getShippingPrice();
-    return PriceCalculator.addDecimals(total);
+    return +PriceCalculator.addDecimals(total);
   }
 }
 
