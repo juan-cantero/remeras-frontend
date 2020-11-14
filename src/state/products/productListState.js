@@ -1,4 +1,4 @@
-const { default: Axios } = require('axios');
+import remerasApi from '../../helpers/api/remerasApi';
 
 //types
 const PRODUCT_LIST_REQUEST = 'PRODUCT-LIST-REQUEST';
@@ -9,7 +9,7 @@ const PRODUCT_LIST_FAIL = 'PRODUCT-LIST-FAIL';
 export const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
-    const { data } = await Axios.get('http://192.168.0.104:5000/api/product');
+    const { data } = await remerasApi.get('/product');
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

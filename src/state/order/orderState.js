@@ -1,4 +1,4 @@
-const { default: Axios } = require('axios');
+import remerasApi from '../../helpers/api/remerasApi';
 
 const ORDER_CREATE_REQUEST = 'ORDER_CREATE_REQUEST';
 const ORDER_CREATE_SUCCESS = 'ORDER_CREATE_SUCCESS';
@@ -10,18 +10,16 @@ export const createOrder = (orderData) => async (dispatch, getState) => {
   const {
     userLogin: { userInfo },
   } = getState();
+
   const config = {
     headers: {
-      'CONTENT-TYPE': 'application/json',
-      AUTHORIZATION: `Bearer ${userInfo.token}`,
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${userInfo.token}`,
     },
   };
+
   try {
-    const { data } = await Axios.post(
-      'http://192.168.0.104:5000/api/orders',
-      orderData,
-      config
-    );
+    const { data } = await remerasApi.post('orders', orderData, config);
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

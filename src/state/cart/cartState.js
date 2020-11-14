@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import remerasApi from '../../helpers/api/remerasApi';
 
 const CART_ADD_ITEM = 'CART_ADD_ITEM';
 const CART_REMOVE_ITEM = 'CART_REMOVE_ITEM';
@@ -8,9 +8,7 @@ const CART_SAVE_PAYMENT_METHOD = 'CART_SAVE_PAYMENT_METHOD';
 //ACTIONS
 
 export const addToCart = (id, quantity, size) => async (dispatch, getState) => {
-  const { data } = await Axios.get(
-    `http://192.168.0.104:5000/api/product/${id}`
-  );
+  const { data } = await remerasApi.get(`product/${id}`);
   const product = {
     id: id,
     name: `${data.product.name}-${size}`,

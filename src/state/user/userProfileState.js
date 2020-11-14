@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import remerasApi from '../../helpers/api/remerasApi';
 
 const USER_DETAILS_REQUEST = 'USER_DETAILS_REQUEST';
 const USER_DETAILS_SUCCESS = 'USER_DETAILS_SUCCESS';
@@ -6,22 +7,10 @@ const USER_DETAILS_FAILS = 'USER_DETAILS_FAILS';
 
 //action
 
-export const getUserDetails = () => async (dispatch, getState) => {
+export const getUserDetails = () => async (dispatch) => {
   dispatch({ type: USER_DETAILS_REQUEST });
   try {
-    const {
-      userLogin: { userInfo },
-    } = getState();
-    const config = {
-      headers: {
-        'CONTENT-TYPE': 'application/json',
-        AUTHORIZATION: `Bearer ${userInfo.token}`,
-      },
-    };
-    const { data } = await Axios.get(
-      `http://192.168.0.104:5000/api/user/profile`,
-      config
-    );
+    const { data } = await remerasApi.get('/user/profile');
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

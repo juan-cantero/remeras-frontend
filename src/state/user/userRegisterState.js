@@ -1,4 +1,4 @@
-const { default: Axios } = require('axios');
+import remerasApi from '../../helpers/api/remerasApi';
 
 const USER_REGISTER_REQUEST = 'USER_REGISTER_REQUEST';
 const USER_REGISTER_FAILS = 'USER_REGISTER_FAILS';
@@ -10,13 +10,7 @@ const USER_CLEAN_INFO_IN_LOGOUT = 'USER_CLEAN_INFO_IN_LOGOUT';
 export const register = (name, email, password) => async (dispatch) => {
   dispatch({ type: USER_REGISTER_REQUEST });
   try {
-    const { data } = await Axios.post(
-      'http://192.168.0.104:5000/api/user/',
-      { name, email, password },
-      {
-        headers: { 'CONTENT-TYPE': 'application/json' },
-      }
-    );
+    const { data } = await remerasApi.post('user');
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

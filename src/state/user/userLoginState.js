@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import remerasApi from '../../helpers/api/remerasApi';
 
 const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST';
 const USER_LOGIN_FAILS = 'USER_LOGIN_FAILS';
@@ -10,15 +10,10 @@ const USER_LOGOUT = 'USER_LOGOUT';
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
-    const { data } = await Axios.post(
-      'http://192.168.0.104:5000/api/user/login',
-      { email, password },
-      {
-        headers: { 'CONTENT-TYPE': 'application/json' },
-      }
-    );
+    const { data } = await remerasApi.post('user/login', { email, password });
+
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
-    localStorage.setItem('userData', JSON.stringify(data));
+    localStorage.setItem('userInfo', JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAILS,

@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import remerasApi from '../../helpers/api/remerasApi';
 
 const USER_UPDATE_PROFILE_REQUEST = 'USER_UPDATE_PROFILE_REQUEST';
 const USER_UPDATE_PROFILE_SUCCESS = 'USER_UPDATE_PROFILE_SUCCESS';
@@ -11,19 +11,15 @@ export const updateProfile = (user) => async (dispatch, getState) => {
   const {
     userLogin: { userInfo },
   } = getState();
+
   const config = {
     headers: {
-      'CONTENT-TYPE': 'application/json',
-      AUTHORIZATION: `Bearer ${userInfo.token}`,
+      Authorization: `Bearer ${userInfo.token}`,
     },
   };
-
   try {
-    const { data } = await Axios.put(
-      'http://192.168.0.104:5000/api/user/profile',
-      user,
-      config
-    );
+    const { data } = await remerasApi.put('user/profile', user, config);
+
     dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
