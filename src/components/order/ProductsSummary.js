@@ -3,14 +3,14 @@ import { ListGroupItem, Row, Col, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Message from '../ui-layout/Message';
 
-const ProductsSummary = ({ cartItems }) => {
+const ProductsSummary = ({ items }) => {
   return (
     <>
       <h2>Productos Elegidos</h2>
-      {cartItems.length === 0 ? (
+      {items.length === 0 ? (
         <Message variant="info">Tu carrito esta vacio</Message>
       ) : (
-        cartItems.map((item) => (
+        items.map((item) => (
           <ListGroupItem>
             <Row>
               <Col xs={2} sm={2} md={1}>

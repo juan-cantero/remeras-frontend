@@ -18,10 +18,10 @@ import { login } from '../state/user/userLoginState';
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { loading, error, userInfo } = useSelector((state) => state.userLogin);
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
   const dispatch = useDispatch();
   const redirect = location.search ? location.search.split('=')[1] : '/';
-
   useEffect(() => {
     if (userInfo) {
       history.push(redirect);

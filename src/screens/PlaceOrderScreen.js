@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Col, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CheckOutSteps from '../components/checkOut/CheckOutSteps';
 import OrderSummary from '../components/order/OrderSummary';
 import ProductsSummary from '../components/order/ProductsSummary';
@@ -14,7 +14,7 @@ const PlaceOrderScreen = ({ history }) => {
     if (success) {
       history.push(`/order/${order._id}`);
     }
-  }, [success, history]);
+  }, [success, history, order]);
 
   return (
     <>
@@ -33,13 +33,18 @@ const PlaceOrderScreen = ({ history }) => {
               </p>
             </ListGroupItem>
             <ListGroupItem>
-              <ProductsSummary cartItems={cart.cartItems} />
+              <ProductsSummary items={cart.cartItems} />
             </ListGroupItem>
           </ListGroup>
         </Col>
 
         <Col md={4}>
-          <OrderSummary error={error} cart={cart} />
+          <OrderSummary
+            error={error}
+            shippingAddress={cart.shippingAddress}
+            items={cart.cartItems}
+            paymentMethod={cart.paymentMethod}
+          />
         </Col>
       </Row>
     </>

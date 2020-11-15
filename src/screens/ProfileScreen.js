@@ -9,13 +9,10 @@ import {
   Row,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import FormContainer from '../components/ui-layout/FormContainer';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
-import { login } from '../state/user/userLoginState';
 import { getUserDetails } from '../state/user/userProfileState';
-import { register } from '../state/user/userRegisterState';
 import { updateProfile } from '../state/user/userUpdateProfileState';
 
 const ProfileScreen = ({ history }) => {

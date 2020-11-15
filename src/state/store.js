@@ -9,6 +9,7 @@ import userRegisterReducer from './user/userRegisterState';
 import userDetailsReducer from './user/userProfileState';
 import userUpdateProfileReducer from './user/userUpdateProfileState';
 import orderCreateReducer from './order/orderState';
+import orderDetailReducer from './order/orderDetailState';
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -19,6 +20,7 @@ const reducer = combineReducers({
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
   orderCreate: orderCreateReducer,
+  orderDetail: orderDetailReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
@@ -36,7 +38,7 @@ const initialState = {
     cartItems: cartItemsFromStorage,
     shippingAddress: shippingAddressFromLocalStorage,
   },
-  userInfo: { userInfo: userInfoFromStorage },
+  userLogin: { userInfo: userInfoFromStorage },
 };
 
 const middlewares = [thunk];

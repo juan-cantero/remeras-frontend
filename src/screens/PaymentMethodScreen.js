@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Col,
   Form,
   FormCheck,
-  FormControl,
   FormGroup,
   FormLabel,
 } from 'react-bootstrap';
@@ -16,11 +15,9 @@ import { savePaymentMethod } from '../state/cart/cartState';
 const PaymentMethodScreen = ({ history }) => {
   const { shippingAdress } = useSelector((state) => state.cart);
 
-  // useEffect(() => {
-  //   if (!shippingAdress.adress) {
-  //     history.push('/shipping');
-  //   }
-  // }, [shippingAdress, history]);
+  // if (!shippingAdress) {
+  //   history.push('/shipping');
+  // }
 
   const [paymentMethod, setPaymentMethod] = useState('efectivo');
   const dispatch = useDispatch();

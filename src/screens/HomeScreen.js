@@ -7,7 +7,7 @@ const HomeScreen = () => {
     <>
       <h1 className="text-center">Remeras Nuevas</h1>
       <ProductListContainer />
-      <Whatapps />
+      <Whatapps phoneNumber={5491153451277} />
     </>
   );
 };

@@ -12,9 +12,9 @@ import PriceCalculator from '../../helpers/order/PriceCalculator';
 import { createOrder } from '../../state/order/orderState';
 import Message from '../ui-layout/Message';
 
-const OrderSummary = ({ cart, error }) => {
+const OrderSummary = ({ items, shippingAddress, paymentMethod, error }) => {
   const dispatch = useDispatch();
-  const priceCalculator = new PriceCalculator(cart.cartItems);
+  const priceCalculator = new PriceCalculator(items);
   let itemsPrice = priceCalculator.getItemsPrice();
   let shippingPrice = priceCalculator.getShippingPrice();
   let totalPrice = priceCalculator.getTotalPrice();
@@ -22,9 +22,9 @@ const OrderSummary = ({ cart, error }) => {
   const handlePlaceOrder = () => {
     dispatch(
       createOrder({
-        orderItems: cart.cartItems,
-        shippingAddress: cart.shippingAddress,
-        paymentMethod: cart.paymentMethod,
+        orderItems: items,
+        shippingAddress: shippingAddress,
+        paymentMethod: paymentMethod,
         itemsPrice: itemsPrice,
         shippingPrice: shippingPrice,
         totalPrice: totalPrice,
@@ -64,7 +64,7 @@ const OrderSummary = ({ cart, error }) => {
           type="button"
           variant="success"
           className="btn-block"
-          disabled={cart.cartItems.length === 0}
+          disabled={items.length === 0}
           onClick={handlePlaceOrder}
         >
           Hacer el pedido
