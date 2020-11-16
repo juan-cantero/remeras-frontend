@@ -27,7 +27,7 @@ const CartList = ({ cartItems }) => {
                 <Link to={`/product/${product.id}`}>{product.name}</Link>
               </Col>
               <Col className="d-none d-sm-block" md={2} sm={2} xs={2}>
-                ${product.price}
+                ${product.unit_price}
               </Col>
               <Col md={3} sm={3} xs={3} className="text-center">
                 <QuantitySelector

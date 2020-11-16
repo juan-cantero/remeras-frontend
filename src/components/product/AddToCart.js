@@ -43,7 +43,7 @@ const AddToCart = ({ product }) => {
           <Row>
             <Col>Precio:</Col>
             <Col>
-              <strong>{`$ ${product.price}`}</strong>
+              <strong>{`$ ${product.unit_price}`}</strong>
             </Col>
           </Row>
         </ListGroupItem>

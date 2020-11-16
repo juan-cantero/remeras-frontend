@@ -12,11 +12,13 @@ import ShippingScreen from '../screens/ShippingScreen';
 import PaymentMethodScreen from '../screens/PaymentMethodScreen';
 import PlaceOrderScreen from '../screens/PlaceOrderScreen';
 import OrderScreen from '../screens/OrderScreen';
+import SuccessScreen from '../screens/SucessScreen';
 
 const AppRouter = () => {
   return (
     <Router>
       <Layout>
+        <Route path="/success" component={SuccessScreen} />
         <Route path="/order/:id" component={OrderScreen} />
         <Route path="/shipping" component={ShippingScreen} />
         <Route path="/payment" component={PaymentMethodScreen} />

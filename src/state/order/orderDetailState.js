@@ -22,6 +22,7 @@ export const getOrderDetail = (id) => async (dispatch, getState) => {
   try {
     const { data } = await remerasApi.get(`/orders/${id}`, config);
     dispatch({ type: ORDER_DETAIL_SUCCESS, payload: data });
+    localStorage.setItem('orderDetail', JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: ORDER_DETAIL_FAILS,

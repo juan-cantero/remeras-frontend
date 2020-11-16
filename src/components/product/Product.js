@@ -17,7 +17,7 @@ const Product = ({ product }) => {
         </Link>
 
         <Card.Text as="div">
-          <h3 className="text-dark">{'$' + product.price}</h3>
+          <h3 className="text-dark">{'$' + product.unit_price}</h3>
         </Card.Text>
       </Card.Body>
     </Card>

@@ -13,7 +13,7 @@ class PriceCalculator {
 
   getItemsPrice() {
     const total = this.items.reduce(
-      (acc, item) => acc + Number(item.price) * Number(item.quantity),
+      (acc, item) => acc + Number(item.unit_price) * Number(item.quantity),
       0
     );
     return +PriceCalculator.addDecimals(total);

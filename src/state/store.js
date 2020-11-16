@@ -10,6 +10,8 @@ import userDetailsReducer from './user/userProfileState';
 import userUpdateProfileReducer from './user/userUpdateProfileState';
 import orderCreateReducer from './order/orderState';
 import orderDetailReducer from './order/orderDetailState';
+import orderPayReducer from './order/orderPayState';
+import mercadoPagoPayReducer from './mercadopago/mercadoPagoState';
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -21,6 +23,8 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateProfileReducer,
   orderCreate: orderCreateReducer,
   orderDetail: orderDetailReducer,
+  orderPay: orderPayReducer,
+  mercadoPagoPay: mercadoPagoPayReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')

@@ -13,14 +13,15 @@ const ProductsSummary = ({ items }) => {
         items.map((item) => (
           <ListGroupItem>
             <Row>
-              <Col xs={2} sm={2} md={1}>
+              <Col xs={2} sm={2} md={2}>
                 <Image src={item.image} alt={item.name} fluid rounded />
               </Col>
               <Col>
-                <Link to={`/product/${item.product}`}>{item.name}</Link>
+                <Link to={`/product/${item.id}`}>{item.name}</Link>
               </Col>
               <Col md={4}>
-                {item.quantity} X ${item.price} = ${item.quantity * item.price}
+                {item.quantity} X ${item.unit_price} = $
+                {item.quantity * item.unit_price}
               </Col>
             </Row>
           </ListGroupItem>

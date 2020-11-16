@@ -27,7 +27,7 @@ const ProductDetail = ({ product }) => {
               <h3>{product.name}</h3>
             </ListGroupItem>
             <ListGroupItem>
-              <Price price={product.price} />
+              <Price price={product.unit_price} />
             </ListGroupItem>
             <ListGroupItem>{`Descripcion: ${product.description}`}</ListGroupItem>
           </ListGroup>
