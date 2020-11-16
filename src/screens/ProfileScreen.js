@@ -9,11 +9,15 @@ import {
   Row,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import WithLoading from '../components/hoc/withLoading';
+import MyOrders from '../components/order/MyOrders';
 import FormContainer from '../components/ui-layout/FormContainer';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
+import { getOrdersByUser } from '../state/order/ordersByUserState';
 import { getUserDetails } from '../state/user/userProfileState';
 import { updateProfile } from '../state/user/userUpdateProfileState';
+const MyOrdersWithLoading = WithLoading(MyOrders);
 
 const ProfileScreen = ({ history }) => {
   const { loading, error, userProfile } = useSelector(
@@ -22,6 +26,11 @@ const ProfileScreen = ({ history }) => {
 
   const { userInfo } = useSelector((state) => state.userLogin);
   const { success } = useSelector((state) => state.userUpdateProfile);
+  const {
+    loading: myordersLoading,
+    error: myOrdersError,
+    orders,
+  } = useSelector((state) => state.myOrders);
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
@@ -36,6 +45,7 @@ const ProfileScreen = ({ history }) => {
     } else {
       if (!userProfile) {
         dispatch(getUserDetails());
+        dispatch(getOrdersByUser());
       } else {
         console.log(userProfile);
         setName(userProfile.name);
@@ -68,7 +78,7 @@ const ProfileScreen = ({ history }) => {
 
   return (
     <Row className="px-0">
-      <Col md={6}>
+      <Col md={5}>
         <FormContainer>
           <h2>Perfil de Usuario</h2>
           {error && <Message variant="danger">{error}</Message>}
@@ -126,8 +136,12 @@ const ProfileScreen = ({ history }) => {
           </Form>
         </FormContainer>
       </Col>
-      <Col className="offset-md-1" md={5}>
-        <h2>Mis compras</h2>
+      <Col md={6}>
+        <MyOrdersWithLoading
+          isLoading={myordersLoading}
+          error={myOrdersError}
+          orders={orders}
+        />
       </Col>
     </Row>
   );

@@ -8,10 +8,11 @@ import userLoginReducer from './user/userLoginState';
 import userRegisterReducer from './user/userRegisterState';
 import userDetailsReducer from './user/userProfileState';
 import userUpdateProfileReducer from './user/userUpdateProfileState';
-import orderCreateReducer from './order/orderState';
+import orderCreateReducer from './order/orderCreateState';
 import orderDetailReducer from './order/orderDetailState';
 import orderPayReducer from './order/orderPayState';
 import mercadoPagoPayReducer from './mercadopago/mercadoPagoState';
+import ordersByUserReducer from './order/ordersByUserState';
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -24,6 +25,7 @@ const reducer = combineReducers({
   orderCreate: orderCreateReducer,
   orderDetail: orderDetailReducer,
   orderPay: orderPayReducer,
+  myOrders: ordersByUserReducer,
   mercadoPagoPay: mercadoPagoPayReducer,
 });
 
