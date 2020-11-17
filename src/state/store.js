@@ -18,7 +18,7 @@ import {
   userLoginReducer,
   userRegisterReducer,
   userUpdateProfileReducer,
-} from './user';
+} from './user/reducers';
 import ordersByUserReducer from './order/ordersByUserState';
 
 const reducer = combineReducers({

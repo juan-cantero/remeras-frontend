@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import FormContainer from '../components/ui-layout/FormContainer';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
-import { getUser } from '../state/user';
+import { getUser } from '../state/user/actions';
 
 const UserEditScreen = ({ match, history }) => {
   const userId = match.params.id;

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
-import { deleteUser, getUserList } from '../state/user';
+import { deleteUser, getUserList } from '../state/user/actions';
 
 const UserListScreen = () => {
   const dispatch = useDispatch();
