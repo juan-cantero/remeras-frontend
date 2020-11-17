@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 import FormContainer from '../components/ui-layout/FormContainer';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
-import { login } from '../state/user/userLoginState';
+import { login } from '../state/user';
 
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState('');

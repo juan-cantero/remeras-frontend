@@ -15,11 +15,9 @@ const OrderScreen = ({ match }) => {
   const dispatch = useDispatch();
   const { order, loading, error } = useSelector((state) => state.orderDetail);
 
-  const {
-    init_point,
-    loading: loadingPayment,
-    error: errorPayment,
-  } = useSelector((state) => state.mercadoPagoPay);
+  const { init_point, error: errorPayment } = useSelector(
+    (state) => state.mercadoPagoPay
+  );
 
   useEffect(() => {
     if (init_point) {

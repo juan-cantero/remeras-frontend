@@ -5,20 +5,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
-import { getUserList } from '../state/user/userListState';
+import { deleteUser, getUserList } from '../state/user';
 
 const UserListScreen = () => {
   const dispatch = useDispatch();
   const { error, loading, userList } = useSelector((state) => state.userList);
+  const { success } = useSelector((state) => state.userDelete);
 
   useEffect(() => {
     dispatch(getUserList());
-  }, [dispatch]);
+  }, [dispatch, success]);
 
-  const handleDeleteUser = (userId) => {};
+  const handleUserDeletion = (userId) => {
+    if (window.confirm('Estas seguro?')) {
+      dispatch(deleteUser(userId));
+    }
+  };
   return (
     <>
-      <h1>Users</h1>
+      <h1>Usuarios</h1>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -53,7 +58,7 @@ const UserListScreen = () => {
                   )}
                 </td>
                 <td>
-                  <LinkContainer to={`user/${user._id}/edit`}>
+                  <LinkContainer to={`/admin/user/${user._id}/edit`}>
                     <Button variant="light" className="btn-sm">
                       <i className="fas fa-edit"></i>
                     </Button>
@@ -62,7 +67,7 @@ const UserListScreen = () => {
                     variant="danger"
                     className="btn-sm"
                     onClick={() => {
-                      handleDeleteUser(user._id);
+                      handleUserDeletion(user._id);
                     }}
                   >
                     <i className="fas fa-trash"></i>

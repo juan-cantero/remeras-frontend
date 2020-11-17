@@ -7,18 +7,12 @@ import {
   FormGroup,
   FormLabel,
 } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import CheckOutSteps from '../components/checkOut/CheckOutSteps';
 import FormContainer from '../components/ui-layout/FormContainer';
 import { savePaymentMethod } from '../state/cart/cartState';
 
 const PaymentMethodScreen = ({ history }) => {
-  const { shippingAdress } = useSelector((state) => state.cart);
-
-  // if (!shippingAdress) {
-  //   history.push('/shipping');
-  // }
-
   const [paymentMethod, setPaymentMethod] = useState('efectivo');
   const dispatch = useDispatch();
 

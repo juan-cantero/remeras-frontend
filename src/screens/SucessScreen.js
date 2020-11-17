@@ -5,7 +5,6 @@ import Axios from 'axios';
 import { payOrder } from '../state/order/orderPayState';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
-import IsPaid from '../components/order/IsPaid';
 
 const SuccessScreen = ({ location }) => {
   const { loading, success, error } = useSelector((state) => state.orderPay);

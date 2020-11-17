@@ -16,6 +16,7 @@ import SuccessScreen from '../screens/SucessScreen';
 import UserListScreen from '../screens/UserListScreen';
 import { PrivateRoute } from './PrivateRoute';
 import { useSelector } from 'react-redux';
+import UserEditScreen from '../screens/UserEditScreen';
 
 const AppRouter = () => {
   const { userInfo } = useSelector((state) => state.userLogin);
@@ -53,6 +54,12 @@ const AppRouter = () => {
         <PrivateRoute
           path="/admin/userlist"
           component={UserListScreen}
+          isAuthenticated={userInfo}
+          isAdmin={isAdmin}
+        />
+        <PrivateRoute
+          path="/admin/user/:id/edit"
+          component={UserEditScreen}
           isAuthenticated={userInfo}
           isAdmin={isAdmin}
         />

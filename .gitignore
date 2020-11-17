@@ -22,3 +22,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.VSCodeCounter/2020-11-17_13-15-26/details.md
+
+.VSCodeCounter/2020-11-17_13-15-26/results.csv
+
+.VSCodeCounter/2020-11-17_13-15-26/results.md
+
+.VSCodeCounter/2020-11-17_13-15-26/results.txt

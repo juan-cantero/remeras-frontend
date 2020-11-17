@@ -15,8 +15,8 @@ import FormContainer from '../components/ui-layout/FormContainer';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
 import { getOrdersByUser } from '../state/order/ordersByUserState';
-import { getUserDetails } from '../state/user/userProfileState';
-import { updateProfile } from '../state/user/userUpdateProfileState';
+import { getUserDetails, updateProfile } from '../state/user';
+
 const MyOrdersWithLoading = WithLoading(MyOrders);
 
 const ProfileScreen = ({ history }) => {
@@ -63,7 +63,9 @@ const ProfileScreen = ({ history }) => {
     }
   };
 
-  const handleNameChange = (e) => [setName(e.target.value)];
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
