@@ -1,6 +1,6 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../components/ui-layout/Layout';
 import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../screens/ProductScreen';
@@ -13,22 +13,51 @@ import PaymentMethodScreen from '../screens/PaymentMethodScreen';
 import PlaceOrderScreen from '../screens/PlaceOrderScreen';
 import OrderScreen from '../screens/OrderScreen';
 import SuccessScreen from '../screens/SucessScreen';
+import UserListScreen from '../screens/UserListScreen';
+import { PrivateRoute } from './PrivateRoute';
+import { useSelector } from 'react-redux';
 
 const AppRouter = () => {
+  const { userInfo } = useSelector((state) => state.userLogin);
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    if (userInfo && userInfo.isAdmin) {
+      setIsAdmin(true);
+    }
+  }, [isAdmin, userInfo]);
   return (
     <Router>
       <Layout>
         <Route path="/success" component={SuccessScreen} />
         <Route path="/order/:id" component={OrderScreen} />
-        <Route path="/shipping" component={ShippingScreen} />
-        <Route path="/payment" component={PaymentMethodScreen} />
-        <Route path="/placeorder" component={PlaceOrderScreen} />
+        <PrivateRoute
+          path="/shipping"
+          component={ShippingScreen}
+          isAuthenticated={userInfo}
+        />
+        <PrivateRoute
+          path="/payment"
+          component={PaymentMethodScreen}
+          isAuthenticated={userInfo}
+        />
+        <PrivateRoute
+          path="/placeorder"
+          component={PlaceOrderScreen}
+          isAuthenticated={userInfo}
+        />
         <Route path="/login" component={LoginScreen} />
         <Route path="/register" component={RegisterScreen} />
         <Route path="/profile" component={ProfileScreen} />
         <Route path="/product/:id" component={ProductScreen} />
         <Route path="/cart" component={CartScreen} />
+        <PrivateRoute
+          path="/admin/userlist"
+          component={UserListScreen}
+          isAuthenticated={userInfo}
+          isAdmin={isAdmin}
+        />
         <Route path="/" exact component={HomeScreen} />
+        <Redirect to="/" />
       </Layout>
     </Router>
   );

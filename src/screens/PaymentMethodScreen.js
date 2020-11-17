@@ -45,7 +45,15 @@ const PaymentMethodScreen = ({ history }) => {
               id="Efectivo"
               name="paymentMethod"
               value="efectivo"
-              checked
+              defaultChecked
+              onChange={handleSetPaymentMethod}
+            ></FormCheck>
+            <FormCheck
+              type="radio"
+              label="Mercado pago"
+              id="Mercadopago"
+              name="paymentMethod"
+              value="mercadopago"
               onChange={handleSetPaymentMethod}
             ></FormCheck>
           </Col>

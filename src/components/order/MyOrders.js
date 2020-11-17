@@ -6,7 +6,7 @@ const MyOrders = ({ orders }) => {
   return (
     <>
       <h2>Mis ordenes</h2>
-      <Table striped bordered hover responsive className="table-sm">
+      <Table striped bordered hover responsive size="sm">
         <thead>
           <th>Id</th>
           <th>Fecha</th>
@@ -21,7 +21,7 @@ const MyOrders = ({ orders }) => {
               <td>{order._id}</td>
               <td>{order.createdAt.substring(0, 10)}</td>
               <td>{order.totalPrice}</td>
-              <td>
+              <td style={{ color: 'green' }}>
                 {order.isPaid ? (
                   order.paidAt.substring(0, 10)
                 ) : (

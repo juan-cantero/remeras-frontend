@@ -28,3 +28,12 @@
     height: 50px;
   }
 }
+
+.Whatsapp-button {
+  @extend .Whatsapp;
+  display: flex;
+  margin: auto;
+  position: relative;
+  width: 70px;
+  height: 70px;
+}

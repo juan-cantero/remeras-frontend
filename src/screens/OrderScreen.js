@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Col, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import OrderSummaryForCash from '../components/order/OrderSummaryForCash';
 
 import Pay from '../components/order/Pay';
 import ProductsSummary from '../components/order/ProductsSummary';
@@ -22,7 +23,7 @@ const OrderScreen = ({ match }) => {
 
   useEffect(() => {
     if (init_point) {
-      window.location.replace(init_point);
+      window.open(init_point, '_blank');
     }
     dispatch(getOrderDetail(orderId));
   }, [orderId, dispatch, init_point]);
@@ -54,11 +55,15 @@ const OrderScreen = ({ match }) => {
         </Col>
 
         <Col md={4}>
-          <Pay
-            error={errorPayment}
-            external_reference={orderId}
-            items={order.orderItems}
-          />
+          {order.paymentMethod === 'mercadopago' ? (
+            <Pay
+              error={errorPayment}
+              external_reference={orderId}
+              items={order.orderItems}
+            />
+          ) : (
+            <OrderSummaryForCash items={order.orderItems} />
+          )}
         </Col>
       </Row>
     </>
