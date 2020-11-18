@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import WithLoading from '../components/hoc/withLoading';
 import ProductDetail from '../components/product/ProductDetail';
-import { getProductDetail } from '../state/products/productState';
+import { getProductDetail } from '../state/products/actions';
 const ProductDetailWithLoading = WithLoading(ProductDetail);
 
 const ProductScreen = ({ match }) => {

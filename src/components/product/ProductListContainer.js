@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { listProducts } from '../../state/products/productListState';
+import { listProducts } from '../../state/products/actions';
 import WithLoading from '../hoc/withLoading';
 import ProductList from './ProductList';
 

@@ -5,6 +5,7 @@ import userLoginReducer from './login';
 import userRegisterReducer from './register';
 import userDetailsReducer from './details';
 import userUpdateProfileReducer from './updateProfile';
+import userUpdateReducer from './update';
 
 export {
   userListReducer,
@@ -14,4 +15,5 @@ export {
   userRegisterReducer,
   userDetailsReducer,
   userUpdateProfileReducer,
+  userUpdateReducer,
 };

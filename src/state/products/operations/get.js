@@ -1,4 +1,4 @@
-import remerasApi from '../../helpers/api/remerasApi';
+import remerasApi from '../../../helpers/api/remerasApi';
 
 //types
 const PRODUCT_DETAIL_REQUEST = 'PRODUCT_DETAIL-REQUEST';

@@ -17,6 +17,7 @@ import UserListScreen from '../screens/UserListScreen';
 import { PrivateRoute } from './PrivateRoute';
 import { useSelector } from 'react-redux';
 import UserEditScreen from '../screens/UserEditScreen';
+import ProductListScreen from '../screens/ProductListScreen';
 
 const AppRouter = () => {
   const { userInfo } = useSelector((state) => state.userLogin);
@@ -49,6 +50,12 @@ const AppRouter = () => {
         <Route path="/login" component={LoginScreen} />
         <Route path="/register" component={RegisterScreen} />
         <Route path="/profile" component={ProfileScreen} />
+        <PrivateRoute
+          path="/admin/productlist"
+          component={ProductListScreen}
+          isAuthenticated={userInfo}
+          isAdmin={isAdmin}
+        />
         <Route path="/product/:id" component={ProductScreen} />
         <Route path="/cart" component={CartScreen} />
         <PrivateRoute

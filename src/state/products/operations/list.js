@@ -1,4 +1,4 @@
-import remerasApi from '../../helpers/api/remerasApi';
+import remerasApi from '../../../helpers/api/remerasApi';
 
 //types
 const PRODUCT_LIST_REQUEST = 'PRODUCT-LIST-REQUEST';
@@ -9,7 +9,7 @@ const PRODUCT_LIST_FAIL = 'PRODUCT-LIST-FAIL';
 export const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
-    const { data } = await remerasApi.get('/product');
+    const { data } = await remerasApi.get('/product/list');
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

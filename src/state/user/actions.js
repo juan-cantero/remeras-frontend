@@ -5,6 +5,7 @@ import { login, logOut } from './login';
 import { register, clearUserInfoInLogOut } from './register';
 import { getUserDetails } from './details';
 import { updateProfile } from './updateProfile';
+import { updateUser, clearUpdateUser } from './update';
 
 export {
   getUser,
@@ -16,4 +17,6 @@ export {
   getUserDetails,
   getUserList,
   updateProfile,
+  updateUser,
+  clearUpdateUser,
 };
