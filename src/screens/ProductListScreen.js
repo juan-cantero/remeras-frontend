@@ -6,9 +6,14 @@ import { v4 as uuidv4 } from 'uuid';
 import { LinkContainer } from 'react-router-bootstrap';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
-import { deleteProduct, listProducts } from '../state/products/actions';
+import {
+  createProduct,
+  createProductReset,
+  deleteProduct,
+  listProducts,
+} from '../state/products/actions';
 
-const ProductListScreen = () => {
+const ProductListScreen = ({ history }) => {
   const dispatch = useDispatch();
   const { error, loading, products } = useSelector(
     (state) => state.productList
@@ -20,12 +25,24 @@ const ProductListScreen = () => {
     success: successOnDelete,
   } = useSelector((state) => state.productDelete);
 
+  const {
+    error: errorOnCreate,
+    loading: loadingOnCreate,
+    createSuccess,
+    createdProduct,
+  } = useSelector((state) => state.productCreate);
+
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch, successOnDelete]);
+    dispatch(createProductReset());
+    if (createSuccess) {
+      history.push(`/admin/product/${createdProduct._id}/edit`);
+    } else {
+      dispatch(listProducts());
+    }
+  }, [dispatch, successOnDelete, createSuccess, history, createdProduct]);
 
   const handleCreateProduct = () => {
-    return null;
+    dispatch(createProduct());
   };
   const handleProductDeletion = (productId) => {
     if (window.confirm('Estas seguro?')) {
@@ -41,12 +58,14 @@ const ProductListScreen = () => {
 
         <Col className="text-right">
           <Button className="my-3" onClick={handleCreateProduct}>
-            <i className="fas fa-plus"></i> Create product
+            <i className="fas fa-plus"></i> Crear Producto
           </Button>
         </Col>
       </Row>
       {loadingOnDelete && <Loader />}
       {errorOnDelete && <Message variant="danger">{errorOnDelete}</Message>}
+      {loadingOnCreate && <Loader />}
+      {errorOnCreate && <Message variant="danger">{errorOnCreate}</Message>}
       {loading ? (
         <Loader />
       ) : error ? (
@@ -55,7 +74,6 @@ const ProductListScreen = () => {
         <Table striped bordered hover responsive className="table-sm">
           <thead>
             <tr>
-              <th>id</th>
               <th>Nombre</th>
               <th>Descripcion</th>
               <th>Categoria</th>
@@ -68,7 +86,6 @@ const ProductListScreen = () => {
           <tbody>
             {products.map((product) => (
               <tr key={uuidv4()}>
-                <td>{product._id}</td>
                 <td>{product.name}</td>
                 <td>{product.description}</td>
                 <td>{product.category}</td>

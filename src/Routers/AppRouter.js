@@ -18,15 +18,20 @@ import { PrivateRoute } from './PrivateRoute';
 import { useSelector } from 'react-redux';
 import UserEditScreen from '../screens/UserEditScreen';
 import ProductListScreen from '../screens/ProductListScreen';
+import ProductEditScreen from '../screens/ProductEditScreen';
 
 const AppRouter = () => {
   const { userInfo } = useSelector((state) => state.userLogin);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      setIsAdmin(true);
+    if (userInfo) {
+      setIsAuthenticated(true);
+      if (userInfo.isAdmin) {
+        setIsAdmin(true);
+      }
     }
-  }, [isAdmin, userInfo]);
+  }, [isAdmin, userInfo, isAuthenticated]);
   return (
     <Router>
       <Layout>
@@ -35,17 +40,17 @@ const AppRouter = () => {
         <PrivateRoute
           path="/shipping"
           component={ShippingScreen}
-          isAuthenticated={userInfo}
+          isAuthenticated={isAuthenticated}
         />
         <PrivateRoute
           path="/payment"
           component={PaymentMethodScreen}
-          isAuthenticated={userInfo}
+          isAuthenticated={isAuthenticated}
         />
         <PrivateRoute
           path="/placeorder"
           component={PlaceOrderScreen}
-          isAuthenticated={userInfo}
+          isAuthenticated={isAuthenticated}
         />
         <Route path="/login" component={LoginScreen} />
         <Route path="/register" component={RegisterScreen} />
@@ -53,10 +58,16 @@ const AppRouter = () => {
         <PrivateRoute
           path="/admin/productlist"
           component={ProductListScreen}
-          isAuthenticated={userInfo}
+          isAuthenticated={isAuthenticated}
           isAdmin={isAdmin}
         />
         <Route path="/product/:id" component={ProductScreen} />
+        <PrivateRoute
+          path="/admin/product/:id/edit"
+          component={ProductEditScreen}
+          isAuthenticated={isAuthenticated}
+          isAdmin={isAdmin}
+        />
         <Route path="/cart" component={CartScreen} />
         <PrivateRoute
           path="/admin/userlist"

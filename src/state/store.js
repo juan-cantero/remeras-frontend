@@ -20,15 +20,19 @@ import {
 } from './user/reducers';
 import ordersByUserReducer from './order/ordersByUserState';
 import {
+  productCreateReducer,
   productDeleteReducer,
   productDetailReducer,
   productListReducer,
+  productUpdateReducer,
 } from './products/reducers';
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetail: productDetailReducer,
   productDelete: productDeleteReducer,
+  productCreate: productCreateReducer,
+  productUpdate: productUpdateReducer,
   cart: cartReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
