@@ -1,10 +1,11 @@
+import Axios from 'axios';
 import remerasApi from '../../../helpers/api/remerasApi';
 const PRODUCT_UPDATE_REQUEST = 'PRODUCT_UPDATE_REQUEST';
 const PRODUCT_UPDATE_SUCCESS = 'PRODUCT_UPDATE_SUCCESS';
 const PRODUCT_UPDATE_FAILS = 'PRODUCT_UPDATE_FAILS';
 const PRODUCT_UPDATE_RESET = 'PRODUCT_UPDATE_RESET';
 
-export const updateProduct = (id, productInfo) => async (
+export const updateProduct = (id, productInfo, imageFile) => async (
   dispatch,
   getState
 ) => {
@@ -22,6 +23,15 @@ export const updateProduct = (id, productInfo) => async (
   };
 
   try {
+    if (imageFile) {
+      const uploadConfig = await remerasApi.get('/upload', config);
+      await Axios.put(uploadConfig.data.url, imageFile, {
+        headers: {
+          'Content-Type': imageFile.type,
+        },
+      });
+      productInfo = { ...productInfo, image: uploadConfig.data.key };
+    }
     await remerasApi.put(`/product/${id}`, productInfo, config);
     dispatch({ type: PRODUCT_UPDATE_SUCCESS });
   } catch (error) {

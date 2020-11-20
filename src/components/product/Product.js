@@ -7,7 +7,10 @@ const Product = ({ product }) => {
   return (
     <Card className="my-3 py-3 px-2 rounded">
       <Link to={`product/${product._id}`}>
-        <Card.Img src={product.image} variant="top" />
+        <Card.Img
+          src={`https://r-emeras-aws-bucket.s3-sa-east-1.amazonaws.com/${product.image}`}
+          variant="top"
+        />
       </Link>
       <Card.Body className="text-center">
         <Link to={`product/${product._id}`}>

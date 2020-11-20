@@ -19,7 +19,11 @@ const ProductDetail = ({ product }) => {
       </Link>
       <Row>
         <Col md={5} lg={5}>
-          <Image src={product.image} alt={product.name} fluid />
+          <Image
+            src={`https://r-emeras-aws-bucket.s3-sa-east-1.amazonaws.com/${product.image}`}
+            alt={product.name}
+            fluid
+          />
         </Col>
         <Col md={4}>
           <ListGroup variant="flush">
