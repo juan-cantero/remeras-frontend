@@ -14,7 +14,12 @@ const ProductsSummary = ({ items }) => {
           <ListGroupItem>
             <Row>
               <Col xs={2} sm={2} md={2}>
-                <Image src={item.image} alt={item.name} fluid rounded />
+                <Image
+                  src={`https://r-emeras-aws-bucket.s3-sa-east-1.amazonaws.com/${item.image}`}
+                  alt={item.name}
+                  fluid
+                  rounded
+                />
               </Col>
               <Col>
                 <Link to={`/product/${item.id}`}>{item.name}</Link>

@@ -21,7 +21,12 @@ const CartList = ({ cartItems }) => {
           <ListGroupItem key={product.id + product.size}>
             <Row className="cart-container">
               <Col md={3} sm={3} xs={4}>
-                <Image src={product.image} alt={product.name} fluid rounded />
+                <Image
+                  src={`https://r-emeras-aws-bucket.s3-sa-east-1.amazonaws.com/${product.image}`}
+                  alt={product.name}
+                  fluid
+                  rounded
+                />
               </Col>
               <Col md={2} sm={3} xs={3}>
                 <Link to={`/product/${product.id}`}>{product.name}</Link>

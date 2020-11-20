@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
+  Alert,
   Button,
   Col,
   Form,
@@ -20,11 +21,18 @@ import {
 } from '../state/products/actions';
 
 import { Formik } from 'formik';
+import productFormSchema from '../validation/productFormValidation';
+import isEmptyObject from '../helpers/object/isEmptyObject.js';
+import ConditionalError from '../components/ui-layout/ConditionalError';
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id;
 
   const [imageFile, setImageFile] = useState(null);
+  const { loading, error, product } = useSelector(
+    (state) => state.productDetail
+  );
+
   const values = {
     name: '',
     image: '',
@@ -37,10 +45,6 @@ const ProductEditScreen = ({ match, history }) => {
     l: 0,
     xl: 0,
   };
-
-  const { loading, error, product } = useSelector(
-    (state) => state.productDetail
-  );
 
   const {
     loading: loadingOnUpdate,
@@ -89,6 +93,7 @@ const ProductEditScreen = ({ match, history }) => {
       ) : (
         <Formik
           initialValues={values}
+          validationSchema={productFormSchema}
           onSubmit={(values) => {
             dispatch(
               updateProduct(
@@ -138,7 +143,8 @@ const ProductEditScreen = ({ match, history }) => {
                       name="name"
                       isValid={touched.name && !errors.name}
                       onChange={handleChange}
-                    ></FormControl>
+                    />
+                    <ConditionalError errors={errors} errorProp="name" />
                   </FormGroup>
                   <FormGroup controlId="price">
                     <FormLabel>Precio</FormLabel>
@@ -150,7 +156,8 @@ const ProductEditScreen = ({ match, history }) => {
                       name="unitPrice"
                       isValid={touched.unitPrice && !errors.unitPrice}
                       onChange={handleChange}
-                    ></FormControl>
+                    />
+                    <ConditionalError errors={errors} errorProp="unitPrice" />
                   </FormGroup>
                   <FormGroup controlId="image">
                     <FormLabel>Imagen</FormLabel>
@@ -163,9 +170,9 @@ const ProductEditScreen = ({ match, history }) => {
                       custom
                       onChange={handleFileUpload}
                       data-browse="Subir"
-                    ></FormFile>
+                    />
                     {imageFile && (
-                      <p className="text-success">Imagen subida correctament</p>
+                      <p className="text-success">{imageFile.name}</p>
                     )}
                   </FormGroup>
                   <FormGroup controlId="description">
@@ -178,7 +185,9 @@ const ProductEditScreen = ({ match, history }) => {
                       name="description"
                       isValid={touched.description && !errors.description}
                       onChange={handleChange}
-                    ></FormControl>
+                    />
+
+                    <ConditionalError errors={errors} errorProp="description" />
                   </FormGroup>
                   <FormGroup controlId="category">
                     <FormLabel>Categoria</FormLabel>
@@ -190,7 +199,8 @@ const ProductEditScreen = ({ match, history }) => {
                       name="category"
                       isValid={touched.category && !errors.category}
                       onChange={handleChange}
-                    ></FormControl>
+                    />
+                    <ConditionalError errors={errors} errorProp="category" />
                   </FormGroup>
                   <FormGroup controlId="sex">
                     <FormLabel>Sexo</FormLabel>
@@ -205,6 +215,7 @@ const ProductEditScreen = ({ match, history }) => {
                       <option value="hombre">hombre</option>
                       <option value="unisex">unisex</option>
                     </Form.Control>
+                    <ConditionalError errors={errors} errorProp="sex" />
                   </FormGroup>
                   <FormLabel>Stock de cada talle</FormLabel>
                   <Form.Row>
@@ -219,6 +230,7 @@ const ProductEditScreen = ({ match, history }) => {
                         value={values.s}
                         onChange={handleChange}
                       />
+                      <ConditionalError errors={errors} errorProp="s" />
                     </Form.Group>
 
                     <Form.Group as={Col} controlId="m">
@@ -232,7 +244,9 @@ const ProductEditScreen = ({ match, history }) => {
                         value={values.m}
                         onChange={handleChange}
                       />
+                      <ConditionalError errors={errors} errorProp="m" />
                     </Form.Group>
+
                     <Form.Group as={Col} controlId="l">
                       <Form.Label>L</Form.Label>
                       <Form.Control
@@ -244,6 +258,7 @@ const ProductEditScreen = ({ match, history }) => {
                         value={values.l}
                         onChange={handleChange}
                       />
+                      <ConditionalError errors={errors} errorProp="l" />
                     </Form.Group>
                     <Form.Group as={Col} controlId="xl">
                       <Form.Label>XL</Form.Label>
@@ -256,10 +271,15 @@ const ProductEditScreen = ({ match, history }) => {
                         value={values.xl}
                         onChange={handleChange}
                       />
+                      <ConditionalError errors={errors} errorProp="xl" />
                     </Form.Group>
                   </Form.Row>
 
-                  <Button type="submit" variant="primary">
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    disabled={!isEmptyObject(errors)}
+                  >
                     Actualizar
                   </Button>
                 </Form>
