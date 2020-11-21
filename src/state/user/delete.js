@@ -23,6 +23,8 @@ export const deleteUser = (id) => async (dispatch, getState) => {
 
   try {
     await remerasApi.delete(`user/${id}`, config);
+    await remerasApi.delete(`s3/${id}`, config);
+    await remerasApi.delete(`product/list/${id}`, config);
     dispatch({ type: USER_DELETE_SUCCESS });
   } catch (error) {
     dispatch({

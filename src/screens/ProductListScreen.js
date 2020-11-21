@@ -44,9 +44,9 @@ const ProductListScreen = ({ history }) => {
   const handleCreateProduct = () => {
     dispatch(createProduct());
   };
-  const handleProductDeletion = (productId) => {
+  const handleProductDeletion = (productId, creatorId) => {
     if (window.confirm('Estas seguro?')) {
-      dispatch(deleteProduct(productId));
+      dispatch(deleteProduct(productId, creatorId));
     }
   };
   return (
@@ -106,7 +106,7 @@ const ProductListScreen = ({ history }) => {
                     variant="danger"
                     className="btn-sm"
                     onClick={() => {
-                      handleProductDeletion(product._id);
+                      handleProductDeletion(product._id, product.creator);
                     }}
                   >
                     <i className="fas fa-trash"></i>

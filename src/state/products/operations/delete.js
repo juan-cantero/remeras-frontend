@@ -4,7 +4,7 @@ const PRODUCT_DELETE_REQUEST = 'PRODUCT_DELETE_REQUEST';
 const PRODUCT_DELETE_SUCCESS = 'PRODUCT_DELETE_SUCCESS';
 const PRODUCT_DELETE_FAILS = 'PRODUCT_DELETE_FAILS';
 
-export const deleteProduct = (id) => async (dispatch, getState) => {
+export const deleteProduct = (id, creatorId) => async (dispatch, getState) => {
   dispatch({ type: PRODUCT_DELETE_REQUEST });
 
   const {
@@ -18,8 +18,8 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
   };
 
   try {
-    console.log(id);
     await remerasApi.delete(`product/${id}`, config);
+    await remerasApi.delete(`s3/${creatorId}/${id}`, config);
     dispatch({ type: PRODUCT_DELETE_SUCCESS });
   } catch (error) {
     dispatch({

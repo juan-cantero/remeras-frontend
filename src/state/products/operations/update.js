@@ -24,7 +24,7 @@ export const updateProduct = (id, productInfo, imageFile) => async (
 
   try {
     if (imageFile) {
-      const uploadConfig = await remerasApi.get('/upload', config);
+      const uploadConfig = await remerasApi.get('/s3/upload', config);
       await Axios.put(uploadConfig.data.url, imageFile, {
         headers: {
           'Content-Type': imageFile.type,

@@ -9,6 +9,7 @@ const Product = ({ product }) => {
       <Link to={`product/${product._id}`}>
         <Card.Img
           src={`https://r-emeras-aws-bucket.s3-sa-east-1.amazonaws.com/${product.image}`}
+          alt={product.name}
           variant="top"
         />
       </Link>
