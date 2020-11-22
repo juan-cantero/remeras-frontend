@@ -3,6 +3,7 @@ import remerasApi from '../../helpers/api/remerasApi.js';
 const ORDER_CREATE_REQUEST = 'ORDER_CREATE_REQUEST';
 const ORDER_CREATE_SUCCESS = 'ORDER_CREATE_SUCCESS';
 const ORDER_CREATE_FAILS = 'ORDER_CREATE_FAILS';
+const ORDER_CREATE_RESET = 'ORDER_CREATE_RESET';
 
 //actions
 export const createOrder = (orderData) => async (dispatch, getState) => {
@@ -32,6 +33,8 @@ export const createOrder = (orderData) => async (dispatch, getState) => {
   }
 };
 
+export const resetOrder = () => ({ type: ORDER_CREATE_RESET });
+
 //reducer
 const orderCreateReducer = (state = {}, action) => {
   switch (action.type) {
@@ -50,6 +53,8 @@ const orderCreateReducer = (state = {}, action) => {
         loading: false,
         error: action.payload,
       };
+    case ORDER_CREATE_RESET:
+      return {};
 
     default:
       return state;

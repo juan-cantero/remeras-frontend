@@ -7,7 +7,7 @@ const MERCADOPAGO_PAY_FAILS = 'MERCADOPAGO_PAY_FAILS';
 
 //actions
 
-export const payMercadoLibre = (items, external_reference) => async (
+export const payMercadoPago = (items, external_reference) => async (
   dispatch,
   getState
 ) => {

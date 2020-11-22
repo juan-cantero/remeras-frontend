@@ -30,13 +30,13 @@ const MyOrders = ({ orders }) => {
               </td>
               <td>
                 {order.isDelivered ? (
-                  order.isDelivered.substring(0, 10)
+                  order.deliveredAt
                 ) : (
                   <i className="fas fa-times" style={{ color: 'red' }}></i>
                 )}
               </td>
               <td>
-                <LinkContainer to={`/order/${order._id}`}>
+                <LinkContainer to={`/detail/order/${order._id}`}>
                   <Button className="btn-sm" variant="light">
                     Detalles
                   </Button>

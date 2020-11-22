@@ -9,10 +9,10 @@ import {
 } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import PriceCalculator from '../../helpers/order/PriceCalculator';
-import { payMercadoLibre } from '../../state/mercadopago/mercadoPagoState';
+import { payMercadoPago } from '../../state/mercadopago/mercadoPagoState';
 import Message from '../ui-layout/Message';
 
-const Pay = ({ items, external_reference, error }) => {
+const PayMercadoPago = ({ items, external_reference, error }) => {
   const dispatch = useDispatch();
   const priceCalculator = new PriceCalculator(items);
   let itemsPrice = priceCalculator.getItemsPrice();
@@ -20,7 +20,7 @@ const Pay = ({ items, external_reference, error }) => {
   let totalPrice = priceCalculator.getTotalPrice();
 
   const handlePlaceOrder = () => {
-    dispatch(payMercadoLibre(items, external_reference));
+    dispatch(payMercadoPago(items, external_reference));
   };
   return (
     <Card>
@@ -65,4 +65,4 @@ const Pay = ({ items, external_reference, error }) => {
   );
 };
 
-export default Pay;
+export default PayMercadoPago;

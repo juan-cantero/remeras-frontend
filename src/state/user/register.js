@@ -32,7 +32,11 @@ const userRegisterReducer = (state = {}, action) => {
     case USER_REGISTER_REQUEST:
       return { loading: true };
     case USER_REGISTER_SUCCESS:
-      return { loading: false, userInfo: action.payload };
+      return {
+        loading: false,
+        userInfo: action.payload,
+        registerSuccess: true,
+      };
     case USER_REGISTER_FAILS:
       return { loading: false, error: action.payload };
     case USER_CLEAN_INFO_IN_LOGOUT:

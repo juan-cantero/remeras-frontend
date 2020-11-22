@@ -9,7 +9,7 @@ import {
 } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import PriceCalculator from '../../helpers/order/PriceCalculator';
-import { createOrder } from '../../state/order/orderCreateState';
+import { createOrder } from '../../state/order/actions';
 import Message from '../ui-layout/Message';
 
 const OrderSummary = ({ items, shippingAddress, paymentMethod, error }) => {

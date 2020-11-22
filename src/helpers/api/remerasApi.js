@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-const baseUrl = 'http://192.168.0.104:5000/api';
+const baseUrl = 'https://r-emeras.herokuapp.com/api';
 let headers = {
   'CONTENT-TYPE': 'application/json',
 };

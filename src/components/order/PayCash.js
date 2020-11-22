@@ -10,7 +10,7 @@ import {
 import { LinkContainer } from 'react-router-bootstrap';
 import PriceCalculator from '../../helpers/order/PriceCalculator';
 
-const OrderSummaryForCash = ({ items }) => {
+const PayCash = ({ items }) => {
   const priceCalculator = new PriceCalculator(items);
   const totalPrice = priceCalculator.getTotalPrice();
   return (
@@ -38,4 +38,4 @@ const OrderSummaryForCash = ({ items }) => {
   );
 };
 
-export default OrderSummaryForCash;
+export default PayCash;

@@ -3,9 +3,14 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import cartReducer from './cart/cartState';
-import orderCreateReducer from './order/orderCreateState';
-import orderDetailReducer from './order/orderDetailState';
-import orderPayReducer from './order/orderPayState';
+import {
+  orderCreateReducer,
+  orderDetailReducer,
+  orderPayReducer,
+  ordersByUserReducer,
+  orderListReducer,
+  orderDeliverReducer,
+} from './order/reducers';
 import mercadoPagoPayReducer from './mercadopago/mercadoPagoState';
 
 import {
@@ -18,7 +23,6 @@ import {
   userUpdateProfileReducer,
   userUpdateReducer,
 } from './user/reducers';
-import ordersByUserReducer from './order/ordersByUserState';
 import {
   productCreateReducer,
   productDeleteReducer,
@@ -44,8 +48,10 @@ const reducer = combineReducers({
   userList: userListReducer,
   orderCreate: orderCreateReducer,
   orderDetail: orderDetailReducer,
+  orderList: orderListReducer,
   orderPay: orderPayReducer,
   myOrders: ordersByUserReducer,
+  orderDeliver: orderDeliverReducer,
   mercadoPagoPay: mercadoPagoPayReducer,
 });
 

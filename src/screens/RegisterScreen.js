@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 import FormContainer from '../components/ui-layout/FormContainer';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
-import { register } from '../state/user/actions';
+import { login, register } from '../state/user/actions';
 
 const RegisterScreen = ({ location, history }) => {
   const [email, setEmail] = useState('');
@@ -21,7 +21,7 @@ const RegisterScreen = ({ location, history }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState(null);
-  const { loading, error, userInfo } = useSelector(
+  const { loading, error, userInfo, registerSuccess } = useSelector(
     (state) => state.userRegister
   );
   const dispatch = useDispatch();
@@ -31,7 +31,10 @@ const RegisterScreen = ({ location, history }) => {
     if (userInfo) {
       history.push(redirect);
     }
-  }, [history, userInfo, redirect]);
+    if (registerSuccess) {
+      dispatch(login(email, password));
+    }
+  }, [history, userInfo, redirect, registerSuccess, dispatch, email, password]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();

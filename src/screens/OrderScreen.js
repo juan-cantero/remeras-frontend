@@ -1,19 +1,27 @@
 import React, { useEffect } from 'react';
 import { Col, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import OrderSummaryForCash from '../components/order/OrderSummaryForCash';
+import IsDelivered from '../components/order/IsDelivered';
 
-import Pay from '../components/order/Pay';
+import Pay from '../components/order/PayMercadoPago';
 import ProductsSummary from '../components/order/ProductsSummary';
 import ShippingItem from '../components/order/ShippingItem';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
-import { getOrderDetail } from '../state/order/orderDetailState';
+import { getOrderDetail } from '../state/order/actions';
+import PayCash from '../components/order/PayCash';
 
 const OrderScreen = ({ match }) => {
   const orderId = match.params.id;
   const dispatch = useDispatch();
   const { order, loading, error } = useSelector((state) => state.orderDetail);
+
+  // const {loading:loadingOnOrderPay,error:errorOnOrderPay,success:successOnOrderPay} = useSelector(state => state.orderPay);
+  const {
+    loading: loadingOnOrderDeliver,
+    error: errorOnOrderDeliver,
+    order: orderDelivered,
+  } = useSelector((state) => state.orderDeliver);
 
   const { init_point, error: errorPayment } = useSelector(
     (state) => state.mercadoPagoPay
@@ -21,7 +29,7 @@ const OrderScreen = ({ match }) => {
 
   useEffect(() => {
     if (init_point) {
-      window.open(init_point, '_blank');
+      window.location.replace(init_point);
     }
     dispatch(getOrderDetail(orderId));
   }, [orderId, dispatch, init_point]);
@@ -60,7 +68,7 @@ const OrderScreen = ({ match }) => {
               items={order.orderItems}
             />
           ) : (
-            <OrderSummaryForCash items={order.orderItems} />
+            <PayCash items={order.orderItems} />
           )}
         </Col>
       </Row>

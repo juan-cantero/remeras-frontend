@@ -14,7 +14,7 @@ import MyOrders from '../components/order/MyOrders';
 import FormContainer from '../components/ui-layout/FormContainer';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
-import { getOrdersByUser } from '../state/order/ordersByUserState';
+import { getOrdersByUser } from '../state/order/actions';
 import { getUserDetails, updateProfile } from '../state/user/actions';
 
 const MyOrdersWithLoading = WithLoading(MyOrders);

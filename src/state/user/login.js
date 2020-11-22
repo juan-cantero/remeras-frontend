@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router-dom';
 import remerasApi from '../../helpers/api/remerasApi';
 
 const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST';
@@ -49,7 +50,7 @@ const userLoginReducer = (state = initialState, action) => {
     case USER_LOGIN_FAILS:
       return { ...state, loading: false, error: action.payload };
     case USER_LOGOUT:
-      return { ...state, loading: false, userInfo: null };
+      return { ...state, loading: false, userInfo: null, error: null };
     default:
       return state;
   }

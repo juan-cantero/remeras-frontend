@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import queryString from 'query-string';
 import { useDispatch, useSelector } from 'react-redux';
 import Axios from 'axios';
-import { payOrder } from '../state/order/orderPayState';
+import { payOrder } from '../state/order/actions';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
 
