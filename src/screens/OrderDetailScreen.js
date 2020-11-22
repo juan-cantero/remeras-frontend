@@ -106,7 +106,7 @@ const OrderDetailScreen = ({ match }) => {
               </Row>
             </ListGroupItem>
 
-            {isAuthenticated && isAdmin && (
+            {isAuthenticated && isAdmin && !order.isDelivered && (
               <ListGroupItem>
                 <Button
                   type="button"

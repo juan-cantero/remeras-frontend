@@ -22,7 +22,7 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
   };
   try {
     const { data } = await remerasApi.put(
-      `orders/${id}/pay`,
+      `/orders/${id}/pay`,
       paymentResult,
       config
     );

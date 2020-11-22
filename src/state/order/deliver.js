@@ -18,7 +18,7 @@ export const markOrderAsDelivered = (orderId) => async (dispatch, getState) => {
   };
 
   try {
-    await remerasApi.put(`orders/${orderId}/delivered`, {}, config);
+    await remerasApi.put(`/orders/${orderId}/delivered`, {}, config);
     dispatch({ type: ORDER_DELIVER_SUCCESS });
   } catch (error) {
     dispatch({

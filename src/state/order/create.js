@@ -20,7 +20,7 @@ export const createOrder = (orderData) => async (dispatch, getState) => {
   };
 
   try {
-    const { data } = await remerasApi.post('orders', orderData, config);
+    const { data } = await remerasApi.post('/orders', orderData, config);
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
