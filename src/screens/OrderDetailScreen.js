@@ -9,6 +9,7 @@ import {
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import IsDelivered from '../components/order/IsDelivered';
+import IsPaid from '../components/order/IsPaid';
 
 import ProductsSummary from '../components/order/ProductsSummary';
 import ShippingItem from '../components/order/ShippingItem';
@@ -63,11 +64,10 @@ const OrderDetailScreen = ({ match }) => {
                 isDelivered={order.isDelivered}
                 deliveredAt={order.deliveredAt}
               />
-            </ListGroupItem>
-            <ListGroupItem>
               <ShippingItem shippingAddress={order.shippingAddress} />
             </ListGroupItem>
             <ListGroupItem>
+              <IsPaid isPaid={order.isPaid} paidAt={order.paidAt} />
               <h2>Metodo de pago</h2>
               <p>
                 <strong>Metodo: </strong>
