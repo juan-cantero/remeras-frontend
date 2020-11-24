@@ -1,4 +1,4 @@
-import remerasApi from '../../helpers/api/remerasApi';
+import remerasApi from '../../api/remerasApi';
 
 const USER_UPDATE_PROFILE_REQUEST = 'USER_UPDATE_PROFILE_REQUEST';
 const USER_UPDATE_PROFILE_SUCCESS = 'USER_UPDATE_PROFILE_SUCCESS';

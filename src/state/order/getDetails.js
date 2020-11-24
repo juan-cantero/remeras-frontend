@@ -1,4 +1,4 @@
-import remerasApi from '../../helpers/api/remerasApi.js';
+import remerasApi from '../../api/remerasApi.js';
 
 //constants
 const ORDER_DETAIL_REQUEST = 'ORDER_DETAIL_REQUEST';

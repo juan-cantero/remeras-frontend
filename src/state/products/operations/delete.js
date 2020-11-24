@@ -1,4 +1,4 @@
-const { default: remerasApi } = require('../../../helpers/api/remerasApi');
+const { default: remerasApi } = require('../../../api/remerasApi');
 
 const PRODUCT_DELETE_REQUEST = 'PRODUCT_DELETE_REQUEST';
 const PRODUCT_DELETE_SUCCESS = 'PRODUCT_DELETE_SUCCESS';

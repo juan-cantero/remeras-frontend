@@ -9,13 +9,26 @@ import {
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import CheckOutSteps from '../components/checkOut/CheckOutSteps';
+import ConditionalError from '../components/ui-layout/ConditionalError';
 import FormContainer from '../components/ui-layout/FormContainer';
+import isEmptyObject from '../helpers/object/isEmptyObject';
 import { saveShippingAddress } from '../state/cart/cartState';
+import shippingFormSchema from '../validation/shippingFormValidation';
 
 const ShippingScreen = ({ history }) => {
   const dispatch = useDispatch();
   const { shippingAddress } = useSelector((state) => state.cart);
-  const { address, city, locality, postalCode } = shippingAddress;
+  let address = '';
+  let city = '';
+  let locality = '';
+  let postalCode = '';
+
+  if (shippingAddress) {
+    address = shippingAddress.address;
+    city = shippingAddress.city;
+    locality = shippingAddress.locality;
+    postalCode = shippingAddress.postalCode;
+  }
 
   return (
     <Formik
@@ -25,6 +38,7 @@ const ShippingScreen = ({ history }) => {
         locality: locality,
         postalCode: postalCode,
       }}
+      validationSchema={shippingFormSchema}
       onSubmit={(values) => {
         const { address, city, locality, postalCode } = values;
         dispatch(saveShippingAddress({ address, city, locality, postalCode }));
@@ -35,6 +49,7 @@ const ShippingScreen = ({ history }) => {
         values,
         handleChange,
         handleBlur,
+        validateOnBlur,
         handleSubmit,
         touched,
         errors,
@@ -50,9 +65,16 @@ const ShippingScreen = ({ history }) => {
                   type="text"
                   placeholder="Calle"
                   value={values.address}
+                  onBlur={handleBlur}
                   name="address"
+                  isValid={touched.address && !errors.address}
                   onChange={handleChange}
-                ></FormControl>
+                />
+                <ConditionalError
+                  errors={errors}
+                  errorProp="address"
+                  isTouched={touched.address}
+                />
               </FormGroup>
 
               <FormGroup controlId="city">
@@ -61,9 +83,16 @@ const ShippingScreen = ({ history }) => {
                   type="text"
                   placeholder="Ciudad"
                   value={values.city}
+                  onBlur={handleBlur}
                   name="city"
+                  isValid={touched.city && !errors.city}
                   onChange={handleChange}
-                ></FormControl>
+                />
+                <ConditionalError
+                  errors={errors}
+                  errorProp="city"
+                  isTouched={touched.city}
+                />
               </FormGroup>
               <FormGroup controlId="locality">
                 <FormLabel>Localidad</FormLabel>
@@ -71,9 +100,16 @@ const ShippingScreen = ({ history }) => {
                   type="text"
                   placeholder="Localidad"
                   value={values.locality}
+                  onBlur={handleBlur}
                   name="locality"
+                  isValid={touched.locality && !errors.locality}
                   onChange={handleChange}
-                ></FormControl>
+                />
+                <ConditionalError
+                  errors={errors}
+                  errorProp="locality"
+                  isTouched={touched.locality}
+                />
               </FormGroup>
               <FormGroup controlId="postal code">
                 <FormLabel>Codigo Postal</FormLabel>
@@ -81,11 +117,22 @@ const ShippingScreen = ({ history }) => {
                   type="text"
                   placeholder="codigo postal"
                   value={values.postalCode}
+                  onBlur={handleBlur}
                   name="postalCode"
+                  isValid={touched.postalCode && !errors.postalCode}
                   onChange={handleChange}
-                ></FormControl>
+                />
+                <ConditionalError
+                  errors={errors}
+                  errorProp="postalCode"
+                  isTouched={touched.postalCode}
+                />
               </FormGroup>
-              <Button type="submit" variant="success">
+              <Button
+                type="submit"
+                variant="success"
+                disabled={!isEmptyObject(errors)}
+              >
                 Continuar
               </Button>
             </Form>

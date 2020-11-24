@@ -1,4 +1,4 @@
-import remerasApi from '../../helpers/api/remerasApi';
+import remerasApi from '../../api/remerasApi';
 
 const CART_ADD_ITEM = 'CART_ADD_ITEM';
 const CART_REMOVE_ITEM = 'CART_REMOVE_ITEM';
@@ -45,7 +45,7 @@ export const savePaymentMethod = (paymentMethod) => (dispatch) => {
 //REDUCER
 
 const cartReducer = (
-  state = { cartItems: [], shippingAddress: {}, paymentMethod: '' },
+  state = { cartItems: [], shippingAddress: null, paymentMethod: '' },
   action
 ) => {
   switch (action.type) {

@@ -1,4 +1,4 @@
-import remerasApi from '../../helpers/api/remerasApi';
+import remerasApi from '../../api/remerasApi';
 
 const USER_DETAILS_REQUEST = 'USER_DETAILS_REQUEST';
 const USER_DETAILS_SUCCESS = 'USER_DETAILS_SUCCESS';

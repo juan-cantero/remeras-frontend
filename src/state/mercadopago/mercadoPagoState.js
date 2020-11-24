@@ -1,4 +1,4 @@
-const { default: remerasApi } = require('../../helpers/api/remerasApi');
+const { default: remerasApi } = require('../../api/remerasApi');
 
 //const
 const MERCADOPAGO_PAY_REQUEST = 'MERCADOPAGO_PAY_REQUEST';

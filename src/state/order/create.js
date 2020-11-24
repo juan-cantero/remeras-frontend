@@ -1,4 +1,4 @@
-import remerasApi from '../../helpers/api/remerasApi.js';
+import remerasApi from '../../api/remerasApi.js';
 
 const ORDER_CREATE_REQUEST = 'ORDER_CREATE_REQUEST';
 const ORDER_CREATE_SUCCESS = 'ORDER_CREATE_SUCCESS';

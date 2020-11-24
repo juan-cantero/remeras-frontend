@@ -1,4 +1,4 @@
-import remerasApi from '../../helpers/api/remerasApi';
+import remerasApi from '../../api/remerasApi';
 
 const USER_REGISTER_REQUEST = 'USER_REGISTER_REQUEST';
 const USER_REGISTER_FAILS = 'USER_REGISTER_FAILS';

@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom';
-import remerasApi from '../../helpers/api/remerasApi';
+import remerasApi from '../../api/remerasApi';
 
 const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST';
 const USER_LOGIN_FAILS = 'USER_LOGIN_FAILS';

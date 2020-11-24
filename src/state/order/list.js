@@ -1,4 +1,4 @@
-const { default: remerasApi } = require('../../helpers/api/remerasApi');
+const { default: remerasApi } = require('../../api/remerasApi');
 
 const ORDER_LIST_REQUEST = 'ORDER_LIST_REQUEST';
 const ORDER_LIST_SUCCESS = 'ORDER_LIST_SUCCESS';

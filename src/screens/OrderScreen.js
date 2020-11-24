@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { Col, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import IsDelivered from '../components/order/IsDelivered';
 
-import Pay from '../components/order/PayMercadoPago';
+import PayMercadoPago from '../components/order/PayMercadoPago';
 import ProductsSummary from '../components/order/ProductsSummary';
 import ShippingItem from '../components/order/ShippingItem';
 import Loader from '../components/ui-layout/Loader';
@@ -15,13 +14,6 @@ const OrderScreen = ({ match }) => {
   const orderId = match.params.id;
   const dispatch = useDispatch();
   const { order, loading, error } = useSelector((state) => state.orderDetail);
-
-  // const {loading:loadingOnOrderPay,error:errorOnOrderPay,success:successOnOrderPay} = useSelector(state => state.orderPay);
-  const {
-    loading: loadingOnOrderDeliver,
-    error: errorOnOrderDeliver,
-    order: orderDelivered,
-  } = useSelector((state) => state.orderDeliver);
 
   const { init_point, error: errorPayment } = useSelector(
     (state) => state.mercadoPagoPay
@@ -62,7 +54,7 @@ const OrderScreen = ({ match }) => {
 
         <Col md={4}>
           {order.paymentMethod === 'mercadopago' ? (
-            <Pay
+            <PayMercadoPago
               error={errorPayment}
               external_reference={orderId}
               items={order.orderItems}

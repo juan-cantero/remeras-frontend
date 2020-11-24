@@ -1,6 +1,6 @@
 //const
 
-const { default: remerasApi } = require('../../helpers/api/remerasApi');
+const { default: remerasApi } = require('../../api/remerasApi');
 
 const ORDER_PAY_REQUEST = 'ORDER_PAY_REQUEST';
 const ORDER_PAY_SUCESS = 'ORDER_PAY_SUCESS';

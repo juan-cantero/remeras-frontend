@@ -1,4 +1,4 @@
-const { default: remerasApi } = require('../../helpers/api/remerasApi');
+const { default: remerasApi } = require('../../api/remerasApi');
 
 //const
 const ORDERS_BY_USER_REQUEST = 'ORDERS_BY_USER_REQUEST';

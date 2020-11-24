@@ -1,6 +1,6 @@
 //constants
 
-const { default: remerasApi } = require('../../helpers/api/remerasApi');
+const { default: remerasApi } = require('../../api/remerasApi');
 
 const USER_UPDATE_REQUEST = 'USER_UPDATE_REQUEST';
 const USER_UPDATE_SUCCESS = 'USER_UPDATE_SUCCESS';

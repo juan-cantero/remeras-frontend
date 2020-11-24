@@ -1,4 +1,4 @@
-import remerasApi from '../../../helpers/api/remerasApi';
+import remerasApi from '../../../api/remerasApi';
 
 //types
 const PRODUCT_LIST_REQUEST = 'PRODUCT-LIST-REQUEST';
@@ -6,10 +6,12 @@ const PRODUCT_LIST_SUCCESS = 'PRODUCT-LIST-SUCCESS';
 const PRODUCT_LIST_FAIL = 'PRODUCT-LIST-FAIL';
 
 //action
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (keyword = '', page = '') => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
-    const { data } = await remerasApi.get('/product/list');
+    const { data } = await remerasApi.get(
+      `/product/list?keyword=${keyword}&page=${page}`
+    );
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -25,6 +27,9 @@ export const listProducts = () => async (dispatch) => {
 //reducer
 const initialState = {
   products: [],
+  pages: null,
+  page: null,
+
   loading: false,
   error: null,
 };
@@ -34,7 +39,13 @@ const productListReducer = (state = initialState, action) => {
     case PRODUCT_LIST_REQUEST:
       return { ...state, loading: true };
     case PRODUCT_LIST_SUCCESS:
-      return { ...state, products: action.payload, loading: false };
+      return {
+        ...state,
+        products: action.payload.products,
+        pages: action.payload.pages,
+        page: action.payload.page,
+        loading: false,
+      };
     case PRODUCT_LIST_FAIL:
       return { ...state, loading: false, error: action.payload };
 

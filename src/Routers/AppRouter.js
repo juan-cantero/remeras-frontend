@@ -57,6 +57,14 @@ const AppRouter = () => {
           />
           <PrivateRoute
             path="/admin/productlist"
+            exact
+            component={ProductListScreen}
+            isAuthenticated={isAuthenticated}
+            isAdmin={isAdmin}
+          />
+          <PrivateRoute
+            path="/admin/productlist/:page"
+            exact
             component={ProductListScreen}
             isAuthenticated={isAuthenticated}
             isAdmin={isAdmin}
@@ -81,6 +89,13 @@ const AppRouter = () => {
             isAuthenticated={isAuthenticated}
             isAdmin={isAdmin}
           />
+          <Route path="/search/:keyword" exact component={HomeScreen} />
+          <Route
+            path="/search/:keyword/page/:page"
+            exact
+            component={HomeScreen}
+          />
+          <Route path="/page/:page" component={HomeScreen} exact />
           <Route path="/" exact component={HomeScreen} />
           <Redirect to="/" />
         </Switch>

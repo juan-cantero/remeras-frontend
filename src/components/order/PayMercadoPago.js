@@ -53,12 +53,12 @@ const PayMercadoPago = ({ items, external_reference, error }) => {
       <ListGroupItem>
         <Button
           type="button"
-          variant="success"
+          variant="info"
           className="btn-block"
           disabled={items.length === 0}
           onClick={handlePlaceOrder}
         >
-          Pagar
+          Pagar con Mercado Pago
         </Button>
       </ListGroupItem>
     </Card>

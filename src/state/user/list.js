@@ -1,4 +1,4 @@
-import remerasApi from '../../helpers/api/remerasApi.js';
+import remerasApi from '../../api/remerasApi.js';
 //consts
 const USER_LIST_REQUEST = 'USER_LIST_REQUEST';
 const USER_LIST_SUCCESS = 'USER_LIST_SUCCESS';

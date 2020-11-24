@@ -1,4 +1,4 @@
-import remerasApi from '../../../helpers/api/remerasApi';
+import remerasApi from '../../../api/remerasApi';
 const PRODUCT_CREATE_REQUEST = 'PRODUCT_CREATE_REQUEST';
 const PRODUCT_CREATE_SUCCESS = 'PRODUCT_CREATE_SUCCESS';
 const PRODUCT_CREATE_FAILS = 'PRODUCT_CREATE_FAILS';

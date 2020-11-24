@@ -144,7 +144,11 @@ const ProductEditScreen = ({ match, history }) => {
                       isValid={touched.name && !errors.name}
                       onChange={handleChange}
                     />
-                    <ConditionalError errors={errors} errorProp="name" />
+                    <ConditionalError
+                      errors={errors}
+                      errorProp="name"
+                      isTouched={touched.name}
+                    />
                   </FormGroup>
                   <FormGroup controlId="price">
                     <FormLabel>Precio</FormLabel>
@@ -157,7 +161,11 @@ const ProductEditScreen = ({ match, history }) => {
                       isValid={touched.unitPrice && !errors.unitPrice}
                       onChange={handleChange}
                     />
-                    <ConditionalError errors={errors} errorProp="unitPrice" />
+                    <ConditionalError
+                      errors={errors}
+                      errorProp="unitPrice"
+                      isTouched={touched.unitPrice}
+                    />
                   </FormGroup>
                   <FormGroup controlId="image">
                     <FormLabel>Imagen</FormLabel>
@@ -187,7 +195,11 @@ const ProductEditScreen = ({ match, history }) => {
                       onChange={handleChange}
                     />
 
-                    <ConditionalError errors={errors} errorProp="description" />
+                    <ConditionalError
+                      errors={errors}
+                      errorProp="description"
+                      isTouched={touched.description}
+                    />
                   </FormGroup>
                   <FormGroup controlId="category">
                     <FormLabel>Categoria</FormLabel>
@@ -200,7 +212,11 @@ const ProductEditScreen = ({ match, history }) => {
                       isValid={touched.category && !errors.category}
                       onChange={handleChange}
                     />
-                    <ConditionalError errors={errors} errorProp="category" />
+                    <ConditionalError
+                      errors={errors}
+                      errorProp="category"
+                      isTouched={touched.category}
+                    />
                   </FormGroup>
                   <FormGroup controlId="sex">
                     <FormLabel>Sexo</FormLabel>
@@ -215,7 +231,11 @@ const ProductEditScreen = ({ match, history }) => {
                       <option value="hombre">hombre</option>
                       <option value="unisex">unisex</option>
                     </Form.Control>
-                    <ConditionalError errors={errors} errorProp="sex" />
+                    <ConditionalError
+                      errors={errors}
+                      errorProp="sex"
+                      isTouched={touched.sex}
+                    />
                   </FormGroup>
                   <FormLabel>Stock de cada talle</FormLabel>
                   <Form.Row>
@@ -230,7 +250,11 @@ const ProductEditScreen = ({ match, history }) => {
                         value={values.s}
                         onChange={handleChange}
                       />
-                      <ConditionalError errors={errors} errorProp="s" />
+                      <ConditionalError
+                        errors={errors}
+                        errorProp="s"
+                        isTouched={touched.s}
+                      />
                     </Form.Group>
 
                     <Form.Group as={Col} controlId="m">
@@ -244,7 +268,11 @@ const ProductEditScreen = ({ match, history }) => {
                         value={values.m}
                         onChange={handleChange}
                       />
-                      <ConditionalError errors={errors} errorProp="m" />
+                      <ConditionalError
+                        errors={errors}
+                        errorProp="m"
+                        isTouched={touched.m}
+                      />
                     </Form.Group>
 
                     <Form.Group as={Col} controlId="l">
@@ -258,7 +286,11 @@ const ProductEditScreen = ({ match, history }) => {
                         value={values.l}
                         onChange={handleChange}
                       />
-                      <ConditionalError errors={errors} errorProp="l" />
+                      <ConditionalError
+                        errors={errors}
+                        errorProp="l"
+                        isTouched={touched.l}
+                      />
                     </Form.Group>
                     <Form.Group as={Col} controlId="xl">
                       <Form.Label>XL</Form.Label>
@@ -271,7 +303,11 @@ const ProductEditScreen = ({ match, history }) => {
                         value={values.xl}
                         onChange={handleChange}
                       />
-                      <ConditionalError errors={errors} errorProp="xl" />
+                      <ConditionalError
+                        errors={errors}
+                        errorProp="xl"
+                        isTouched={touched.xl}
+                      />
                     </Form.Group>
                   </Form.Row>
 

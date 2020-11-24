@@ -1,4 +1,4 @@
-const { default: remerasApi } = require('../../helpers/api/remerasApi');
+const { default: remerasApi } = require('../../api/remerasApi');
 
 //consts
 const USER_DELETE_REQUEST = 'USER_DELETE_REQUEST';
