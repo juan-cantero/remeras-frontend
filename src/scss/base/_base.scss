@@ -1,9 +1,18 @@
 .img-fluid {
-  max-height: 400px;
+  max-height: 350px;
 }
 
 .navbar-nav {
-  margin-right: 105px;
+  margin-right: 20px;
+}
+
+.custom-switch {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  @media screen and (max-width: 640px) {
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+  }
 }
 
 html,

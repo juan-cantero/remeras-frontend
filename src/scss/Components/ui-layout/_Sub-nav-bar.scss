@@ -1,0 +1,19 @@
+.Sub-nav-bar {
+  display: flex;
+  position: relative;
+  overflow: unset;
+  justify-content: center;
+  margin-top: 10px;
+  &__title {
+    font-family: 'Xanh Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-right: 10px;
+  }
+  @media screen and (max-width: 370px) {
+    justify-content: stretch;
+    &__title {
+      font-size: 2rem;
+    }
+  }
+}

@@ -20,15 +20,19 @@ const SearchBox = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} inline>
+    <Form className="SearchBox" onSubmit={handleSubmit} inline>
       <FormControl
         type="text"
         name="q"
         onChange={handleChange}
         placeholder="Buscar remeras"
-        className="mr-sm-2 ml-sm-5"
+        className="mr-sm-2 ml-sm-1 SearchBox__input"
       />
-      <Button type="submit" variant="secondary" className="p-2">
+      <Button
+        type="submit"
+        variant="secondary"
+        className="p-2 SearchBox__button"
+      >
         Buscar
       </Button>
     </Form>

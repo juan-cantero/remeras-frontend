@@ -2,4 +2,7 @@
   padding: 20px 10px;
   display: block;
   min-height: 80vh;
+  @media screen and (max-width: 575px) {
+    padding: 0;
+  }
 }

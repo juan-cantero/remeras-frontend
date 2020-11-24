@@ -1,9 +1,10 @@
 import React from 'react';
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown, NavLink } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { clearUserInfoInLogOut, logOut } from '../../state/user/actions';
+import Gallery from '../gallery/Gallery';
 import SearchBox from '../searchBox/SearchBox';
 
 const Header = () => {
@@ -25,12 +26,9 @@ const Header = () => {
         collapseOnSelect
         expand="md"
       >
-        <LinkContainer to="/">
-          <Navbar.Brand>Re-meras</Navbar.Brand>
-        </LinkContainer>
+        <SearchBox />
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <SearchBox />
           <Nav className="ml-auto ">
             <LinkContainer to="/cart">
               <Nav.Link>
@@ -69,6 +67,17 @@ const Header = () => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+      <div className="Sub-nav-bar">
+        <NavLink href="/">
+          <p className=" Sub-nav-bar__title text-secondary">Remeras Jackie</p>
+        </NavLink>
+        <Gallery />
+      </div>
+      <div className="Filters">
+        <p>Hombres</p>
+        <p>Mujeres</p>
+        <p>Unisex</p>
+      </div>
     </header>
   );
 };
