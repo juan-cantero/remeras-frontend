@@ -6,6 +6,8 @@ import userRegisterReducer from './register';
 import userDetailsReducer from './details';
 import userUpdateProfileReducer from './updateProfile';
 import userUpdateReducer from './update';
+import resetPasswordReducer from './resetPassword';
+import setNewPasswordReducer from './setNewPassword';
 
 export {
   userListReducer,
@@ -16,4 +18,6 @@ export {
   userDetailsReducer,
   userUpdateProfileReducer,
   userUpdateReducer,
+  resetPasswordReducer,
+  setNewPasswordReducer,
 };

@@ -35,7 +35,7 @@ const RegisterScreen = ({ location, history }) => {
     if (registerSuccess) {
       dispatch(login(email, password));
     }
-  }, [history, userInfo, redirect, registerSuccess, dispatch]);
+  }, [history, userInfo, redirect, registerSuccess, dispatch, email, password]);
 
   return (
     <Formik

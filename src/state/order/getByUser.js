@@ -17,12 +17,12 @@ export const getOrdersByUser = () => async (dispatch, getState) => {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${userInfo.token}`,
-      cache: false,
     },
   };
 
   try {
     const { data } = await remerasApi.get('/orders/myorders', config);
+    console.log(data);
     dispatch({ type: ORDERS_BY_USER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

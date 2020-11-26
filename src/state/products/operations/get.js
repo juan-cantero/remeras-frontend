@@ -1,4 +1,4 @@
-import remerasApi from '../../../api/remerasApi';
+import remerasApi, { remerasApiCache } from '../../../api/remerasApi';
 
 //types
 const PRODUCT_DETAIL_REQUEST = 'PRODUCT_DETAIL-REQUEST';
@@ -10,7 +10,7 @@ const PRODUCT_DETAIL_FAIL = 'PRODUCT_DETAIL-FAIL';
 export const getProductDetail = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAIL_REQUEST });
-    const { data } = await remerasApi.get(`/product/${id}`);
+    const { data } = await remerasApiCache.get(`/product/${id}`);
     dispatch({ type: PRODUCT_DETAIL_SUCCESS, payload: data.product });
   } catch (error) {
     dispatch({

@@ -5,6 +5,8 @@ import Axios from 'axios';
 import { payOrder } from '../state/order/actions';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
+import { Alert, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const SuccessScreen = ({ location }) => {
   const { loading, success, error } = useSelector((state) => state.orderPay);
@@ -30,6 +32,7 @@ const SuccessScreen = ({ location }) => {
     };
     if (paymentDetails === null) {
       getPaymentDetailsFromMercadoLibre(payment_id);
+      console.log(paymentDetails);
     }
   }, [paymentDetails, payment_id, dispatch, external_reference]);
 
@@ -38,7 +41,17 @@ const SuccessScreen = ({ location }) => {
   ) : error ? (
     <Message variant="danger">{error}</Message>
   ) : (
-    <h1>Gracias por su compra</h1>
+    <Alert className="text-center" variant="success">
+      <Alert.Heading>Muchas gracias por su compra!!</Alert.Heading>
+      <p>
+        Nos alegramos que nos haya elegido, pronto le haremos la entrega de su
+        remera. Puede serguir viendo más productos del catálogo si asi lo desea.
+      </p>
+      <hr />
+      <div className="d-flex justify-content-end">
+        <Link to="/">Seguir viendo el catálogo</Link>
+      </div>
+    </Alert>
   );
 };
 

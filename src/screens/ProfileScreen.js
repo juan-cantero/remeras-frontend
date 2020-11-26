@@ -47,7 +47,6 @@ const ProfileScreen = ({ history }) => {
         dispatch(getUserDetails());
         dispatch(getOrdersByUser());
       } else {
-        console.log(userProfile);
         setName(userProfile.name);
         setEmail(userProfile.email);
       }

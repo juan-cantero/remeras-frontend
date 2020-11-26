@@ -1,6 +1,10 @@
 import React from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import moment from 'moment';
+import 'moment/locale/es';
+
+moment.locale('es');
 
 const MyOrders = ({ orders }) => {
   return (
@@ -19,18 +23,18 @@ const MyOrders = ({ orders }) => {
           {orders.map((order) => (
             <tr key={order._id}>
               <td>{order._id}</td>
-              <td>{order.createdAt.substring(0, 10)}</td>
+              <td>{moment(order.createdAt).format('l')}</td>
               <td>{order.totalPrice}</td>
               <td style={{ color: 'green' }}>
                 {order.isPaid ? (
-                  order.paidAt.substring(0, 10)
+                  moment(order.paidAt).format('l')
                 ) : (
                   <i className="fas fa-times" style={{ color: 'red' }}></i>
                 )}
               </td>
               <td>
                 {order.isDelivered ? (
-                  order.deliveredAt
+                  moment(order.deliveredAt).format('l')
                 ) : (
                   <i className="fas fa-times" style={{ color: 'red' }}></i>
                 )}

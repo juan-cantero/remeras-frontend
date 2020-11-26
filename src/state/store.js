@@ -14,6 +14,8 @@ import {
 import mercadoPagoPayReducer from './mercadopago/mercadoPagoState';
 
 import {
+  resetPasswordReducer,
+  setNewPasswordReducer,
   userDeleteReducer,
   userDetailsReducer,
   userGetReducer,
@@ -53,6 +55,8 @@ const reducer = combineReducers({
   myOrders: ordersByUserReducer,
   orderDeliver: orderDeliverReducer,
   mercadoPagoPay: mercadoPagoPayReducer,
+  resetPassword: resetPasswordReducer,
+  setNewPassword: setNewPasswordReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')

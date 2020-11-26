@@ -1,4 +1,4 @@
-import remerasApi from '../../../api/remerasApi';
+import { remerasApiCache } from '../../../api/remerasApi';
 
 //types
 const PRODUCT_LIST_REQUEST = 'PRODUCT-LIST-REQUEST';
@@ -19,7 +19,7 @@ export const listProducts = (keyword = '', page = '') => async (
   } = getState();
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
-    const { data } = await remerasApi.get(
+    const { data } = await remerasApiCache.get(
       `/product/list?keyword=${keyword}&page=${page}`,
       {
         cache: userInfo !== null ? !userInfo.isAdmin : true,
@@ -43,7 +43,7 @@ export const listProductsByGenre = (genre, page = '') => async (
 ) => {
   try {
     dispatch({ type: PRODUCT_LIST_BY_GENRE_REQUEST });
-    const { data } = await remerasApi.get(
+    const { data } = await remerasApiCache.get(
       `/product/list/${genre}?page=${page}`
     );
     dispatch({ type: PRODUCT_LIST_BY_GENRE_SUCCESS, payload: data });

@@ -13,7 +13,6 @@ export const listOrders = () => async (dispatch, getState) => {
   const config = {
     headers: {
       Authorization: `Bearer ${userInfo.token}`,
-      cache: false,
     },
   };
 

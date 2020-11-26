@@ -78,6 +78,10 @@ const LoginScreen = ({ location, history }) => {
             Registrarse
           </Link>
         </Col>
+        <Col>
+          No recuerdo mi password{' '}
+          <Link to="/login/passwordreset">Resetear</Link>
+        </Col>
       </Row>
     </FormContainer>
   );

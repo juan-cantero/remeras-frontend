@@ -6,6 +6,8 @@ import { register, clearUserInfoInLogOut } from './register';
 import { getUserDetails } from './details';
 import { updateProfile } from './updateProfile';
 import { updateUser, clearUpdateUser } from './update';
+import { resetPassword } from './resetPassword';
+import { setNewPassword } from './setNewPassword';
 
 export {
   getUser,
@@ -19,4 +21,6 @@ export {
   updateProfile,
   updateUser,
   clearUpdateUser,
+  resetPassword,
+  setNewPassword,
 };

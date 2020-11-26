@@ -17,7 +17,7 @@ const ProductScreen = ({ match }) => {
     dispatch(getProductDetail(match.params.id));
   }, [dispatch, match]);
 
-  if (!product) return <h1>loading..</h1>;
+  if (!product) return null;
   return (
     <>
       <Meta title={product.name} />

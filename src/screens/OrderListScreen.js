@@ -6,6 +6,10 @@ import { LinkContainer } from 'react-router-bootstrap';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
 import { listOrders } from '../state/order/list';
+import moment from 'moment';
+import 'moment/locale/es';
+
+moment.locale('es');
 
 const OrderListScreen = () => {
   const dispatch = useDispatch();
@@ -40,12 +44,12 @@ const OrderListScreen = () => {
               <tr key={order._id}>
                 <td>{order._id}</td>
                 <td>{order.purchaserUser && order.purchaserUser.name}</td>
-                <td>{order.createdAt.substring(0, 10)}</td>
+                <td>{moment(order.createdAt).format('l')}</td>
                 <td>{order.totalPrice}</td>
 
                 <td>
                   {order.isPaid ? (
-                    order.paidAt.substring(0, 10)
+                    moment(order.paidAt).format('l')
                   ) : (
                     <i
                       className="fas fa-times danger"
@@ -55,7 +59,7 @@ const OrderListScreen = () => {
                 </td>
                 <td>
                   {order.isDelivered ? (
-                    order.deliveredAt
+                    moment(order.deliveredAt).format('l')
                   ) : (
                     <i
                       className="fas fa-times danger"

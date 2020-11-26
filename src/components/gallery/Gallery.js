@@ -25,9 +25,7 @@ const Gallery = () => {
     }
   }, [products]);
 
-  return loading ? (
-    <Loader />
-  ) : error ? (
+  return loading ? null : error ? (
     <Message variant="danger">{error}</Message>
   ) : (
     <>

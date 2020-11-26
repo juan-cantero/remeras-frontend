@@ -22,6 +22,8 @@ import useAuth from '../hooks/useAuth';
 import OrderDetailScreen from '../screens/OrderDetailScreen';
 import Switch from 'react-bootstrap/esm/Switch';
 import FilteredByGenreScreen from '../screens/FilteredByGenreScreen';
+import ResetPasswordScreen from '../screens/ResetPasswordScreen';
+import NewPasswordScreen from '../screens/NewPasswordScreen';
 
 const AppRouter = () => {
   const [isAuthenticated, isAdmin] = useAuth();
@@ -47,7 +49,17 @@ const AppRouter = () => {
             component={PlaceOrderScreen}
             isAuthenticated={isAuthenticated}
           />
-          <Route path="/login" component={LoginScreen} />
+          <Route
+            path="/login/passwordreset"
+            exact
+            component={ResetPasswordScreen}
+          />
+          <Route path="/login" exact component={LoginScreen} />
+          <Route
+            path="/login/newpassword/:resetLink"
+            exact
+            component={NewPasswordScreen}
+          />
           <Route path="/register" component={RegisterScreen} />
           <Route path="/profile" component={ProfileScreen} />
           <PrivateRoute
@@ -104,7 +116,6 @@ const AppRouter = () => {
           <Route path="/genre/:genre" component={FilteredByGenreScreen} exact />
           <Route path="/page/:page" component={HomeScreen} exact />
           <Route path="/" exact component={HomeScreen} />
-          <Redirect to="/" />
         </Switch>
       </Layout>
     </Router>
