@@ -1,5 +1,5 @@
 import { getProductDetail } from './operations/get';
-import { listProducts } from './operations/list';
+import { listProducts, listProductsByGenre } from './operations/list';
 import { deleteProduct } from './operations/delete';
 import { createProduct, createProductReset } from './operations/create';
 import { updateProduct, productUpdateReset } from './operations/update';
@@ -12,4 +12,5 @@ export {
   createProductReset,
   updateProduct,
   productUpdateReset,
+  listProductsByGenre,
 };

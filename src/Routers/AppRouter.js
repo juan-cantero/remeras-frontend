@@ -21,6 +21,7 @@ import OrderListScreen from '../screens/OrderListScreen';
 import useAuth from '../hooks/useAuth';
 import OrderDetailScreen from '../screens/OrderDetailScreen';
 import Switch from 'react-bootstrap/esm/Switch';
+import FilteredByGenreScreen from '../screens/FilteredByGenreScreen';
 
 const AppRouter = () => {
   const [isAuthenticated, isAdmin] = useAuth();
@@ -95,6 +96,12 @@ const AppRouter = () => {
             exact
             component={HomeScreen}
           />
+          <Route
+            path="/genre/:genre/page/:page"
+            exact
+            component={FilteredByGenreScreen}
+          />
+          <Route path="/genre/:genre" component={FilteredByGenreScreen} exact />
           <Route path="/page/:page" component={HomeScreen} exact />
           <Route path="/" exact component={HomeScreen} />
           <Redirect to="/" />

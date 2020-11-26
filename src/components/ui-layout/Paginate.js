@@ -3,7 +3,13 @@ import { Pagination } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { v4 as uuiu } from 'uuid';
 
-const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {
+const Paginate = ({
+  pages,
+  page,
+  isAdmin = false,
+  keyword = '',
+  filter = '',
+}) => {
   return (
     pages > 1 && (
       <Pagination>

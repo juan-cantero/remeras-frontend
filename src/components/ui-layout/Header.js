@@ -1,20 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Nav, Navbar, NavDropdown, NavLink } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 import { clearUserInfoInLogOut, logOut } from '../../state/user/actions';
+import Filter from '../filter/Filter';
 import Gallery from '../gallery/Gallery';
 import SearchBox from '../searchBox/SearchBox';
 
 const Header = () => {
   const history = useHistory();
   const { userInfo } = useSelector((state) => state.userLogin);
+  const [isAuthenticated, isAdmin = false] = useAuth();
   const dispatch = useDispatch();
+
   const handleLogOut = () => {
     dispatch(logOut());
     history.push('/');
     dispatch(clearUserInfoInLogOut());
+  };
+
+  const [filter, setFilter] = useState('todos');
+
+  const handleTodosSet = () => {
+    setFilter('todos');
+  };
+
+  const handleHombreSet = () => {
+    setFilter('hombre');
+  };
+
+  const handleMujerSet = () => {
+    setFilter('mujer');
+  };
+
+  const handleUnisexSet = () => {
+    setFilter('unisex');
   };
 
   return (
@@ -69,15 +91,47 @@ const Header = () => {
       </Navbar>
       <div className="Sub-nav-bar">
         <NavLink href="/">
-          <p className=" Sub-nav-bar__title text-secondary">Remeras Jackie</p>
+          <p className=" Sub-nav-bar__title text-secondary">Remeras Jacqui</p>
         </NavLink>
         <Gallery />
       </div>
-      <div className="Filters">
-        <p>Hombres</p>
-        <p>Mujeres</p>
-        <p>Unisex</p>
-      </div>
+      {!isAdmin && (
+        <div className="Filters">
+          <Link
+            className="Filters__link"
+            style={{ color: `${filter === 'todos' ? 'pink' : ''}` }}
+            onClick={handleTodosSet}
+            to="/"
+          >
+            Todas
+          </Link>
+          <Link
+            className="Filters__link"
+            style={{ color: `${filter === 'hombre' ? 'pink' : ''}` }}
+            onClick={handleHombreSet}
+            to="/genre/hombre"
+          >
+            Hombre
+          </Link>
+          <Link
+            className="Filters__link"
+            to="/genre/mujer"
+            style={{ color: `${filter === 'mujer' ? 'pink' : ''}` }}
+            onClick={handleMujerSet}
+          >
+            Mujer
+          </Link>
+          <Link
+            className="Filters__link"
+            to="/genre/unisex"
+            style={{ color: `${filter === 'unisex' ? 'pink' : ''}` }}
+            onClick={handleUnisexSet}
+          >
+            Unisex
+          </Link>
+        </div>
+      )}
+      <hr style={{ width: '50%', border: '1px solid #f3969a' }} />
     </header>
   );
 };

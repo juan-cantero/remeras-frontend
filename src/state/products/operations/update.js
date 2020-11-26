@@ -28,6 +28,7 @@ export const updateProduct = (id, productInfo, imageFile) => async (
       await Axios.put(uploadConfig.data.url, imageFile, {
         headers: {
           'Content-Type': imageFile.type,
+          cache: false,
         },
       });
       productInfo = { ...productInfo, image: uploadConfig.data.key };
