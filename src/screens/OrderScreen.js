@@ -58,9 +58,12 @@ const OrderScreen = ({ match }) => {
               error={errorPayment}
               external_reference={orderId}
               items={order.orderItems}
+              itemsPrice={order.itemsPrice}
+              shippingPrice={order.shippingPrice}
+              totalPrice={order.totalPrice}
             />
           ) : (
-            <PayCash items={order.orderItems} />
+            <PayCash totalPrice={order.totalPrice} />
           )}
         </Col>
       </Row>

@@ -10,9 +10,7 @@ import {
 import { LinkContainer } from 'react-router-bootstrap';
 import PriceCalculator from '../../helpers/order/PriceCalculator';
 
-const PayCash = ({ items }) => {
-  const priceCalculator = new PriceCalculator(items);
-  const totalPrice = priceCalculator.getTotalPrice();
+const PayCash = ({ totalPrice }) => {
   return (
     <Card>
       <ListGroupItem>

@@ -4,6 +4,7 @@ const CART_ADD_ITEM = 'CART_ADD_ITEM';
 const CART_REMOVE_ITEM = 'CART_REMOVE_ITEM';
 const CART_SAVE_SHIPPING_ADDRESS = 'CART_SAVE_SHIPPING_ADDRESS';
 const CART_SAVE_PAYMENT_METHOD = 'CART_SAVE_PAYMENT_METHOD';
+const CART_SAVE_SHIPPINGPRICE = 'CART_SAVE_SHIPPINGPRICE';
 
 //ACTIONS
 
@@ -42,10 +43,19 @@ export const savePaymentMethod = (paymentMethod) => (dispatch) => {
   localStorage.setItem('paymentMethod', JSON.stringify(paymentMethod));
 };
 
+export const saveShippingPrice = (price) => (dispatch) => {
+  dispatch({ type: CART_SAVE_SHIPPINGPRICE, payload: price });
+};
+
 //REDUCER
 
 const cartReducer = (
-  state = { cartItems: [], shippingAddress: null, paymentMethod: '' },
+  state = {
+    cartItems: [],
+    shippingAddress: null,
+    paymentMethod: '',
+    shippingPrice: 0,
+  },
   action
 ) => {
   switch (action.type) {
@@ -84,6 +94,8 @@ const cartReducer = (
       };
     case CART_SAVE_PAYMENT_METHOD:
       return { ...state, paymentMethod: action.payload };
+    case CART_SAVE_SHIPPINGPRICE:
+      return { ...state, shippingPrice: action.payload };
     default:
       return state;
   }

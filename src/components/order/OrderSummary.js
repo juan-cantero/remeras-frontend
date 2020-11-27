@@ -12,11 +12,22 @@ import PriceCalculator from '../../helpers/order/PriceCalculator';
 import { createOrder } from '../../state/order/actions';
 import Message from '../ui-layout/Message';
 
-const OrderSummary = ({ items, shippingAddress, paymentMethod, error }) => {
+const OrderSummary = ({
+  items,
+  shippingAddress,
+  shippingPrice,
+  paymentMethod,
+  error,
+}) => {
+  const PRICE_FOR_SHIPPING_PRICE = 2000;
   const dispatch = useDispatch();
-  const priceCalculator = new PriceCalculator(items);
+  const priceCalculator = new PriceCalculator(
+    items,
+    shippingPrice,
+    PRICE_FOR_SHIPPING_PRICE
+  );
   let itemsPrice = priceCalculator.getItemsPrice();
-  let shippingPrice = priceCalculator.getShippingPrice();
+  let calculatedShippingPrice = priceCalculator.getShippingPrice();
   let totalPrice = priceCalculator.getTotalPrice();
 
   const handlePlaceOrder = () => {
@@ -26,7 +37,7 @@ const OrderSummary = ({ items, shippingAddress, paymentMethod, error }) => {
         shippingAddress: shippingAddress,
         paymentMethod: paymentMethod,
         itemsPrice: itemsPrice,
-        shippingPrice: shippingPrice,
+        shippingPrice: calculatedShippingPrice,
         totalPrice: totalPrice,
       })
     );
@@ -47,7 +58,7 @@ const OrderSummary = ({ items, shippingAddress, paymentMethod, error }) => {
       <ListGroupItem>
         <Row>
           <Col>Precio de Envio</Col>
-          <Col>$ {shippingPrice}</Col>
+          <Col>$ {calculatedShippingPrice}</Col>
         </Row>
       </ListGroupItem>
       <ListGroupItem>

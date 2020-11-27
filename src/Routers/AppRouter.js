@@ -25,6 +25,8 @@ import FilteredByGenreScreen from '../screens/FilteredByGenreScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 import NewPasswordScreen from '../screens/NewPasswordScreen';
 import FailureScreen from '../screens/FailureScreen';
+import ShippingCostScreen from '../screens/ShippingCostScreen';
+import ShippingCostEditScreen from '../screens/ShippingCostEditScreen';
 
 const AppRouter = () => {
   const [isAuthenticated, isAdmin] = useAuth();
@@ -101,6 +103,19 @@ const AppRouter = () => {
           <PrivateRoute
             path="/admin/user/:id/edit"
             component={UserEditScreen}
+            isAuthenticated={isAuthenticated}
+            isAdmin={isAdmin}
+          />
+
+          <PrivateRoute
+            path="/admin/shippingcost/list"
+            component={ShippingCostScreen}
+            isAuthenticated={isAuthenticated}
+            isAdmin={isAdmin}
+          />
+          <PrivateRoute
+            path="/admin/shippingcost/:id/edit"
+            component={ShippingCostEditScreen}
             isAuthenticated={isAuthenticated}
             isAdmin={isAdmin}
           />

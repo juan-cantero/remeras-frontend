@@ -12,12 +12,15 @@ import PriceCalculator from '../../helpers/order/PriceCalculator';
 import { payMercadoPago } from '../../state/mercadopago/mercadoPagoState';
 import Message from '../ui-layout/Message';
 
-const PayMercadoPago = ({ items, external_reference, error }) => {
+const PayMercadoPago = ({
+  items,
+  itemsPrice,
+  shippingPrice,
+  totalPrice,
+  external_reference,
+  error,
+}) => {
   const dispatch = useDispatch();
-  const priceCalculator = new PriceCalculator(items);
-  let itemsPrice = priceCalculator.getItemsPrice();
-  let shippingPrice = priceCalculator.getShippingPrice();
-  let totalPrice = priceCalculator.getTotalPrice();
 
   const handlePlaceOrder = () => {
     dispatch(payMercadoPago(items, external_reference));

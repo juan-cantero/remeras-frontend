@@ -3,8 +3,10 @@ class PriceCalculator {
    *
    * @param {Array} items
    */
-  constructor(items) {
+  constructor(items, shippingPrice, priceForFreeShipping) {
     this.items = items;
+    this.shippingPrice = shippingPrice;
+    this.priceForFreeShipping = priceForFreeShipping;
   }
 
   static addDecimals(price) {
@@ -20,7 +22,10 @@ class PriceCalculator {
   }
 
   getShippingPrice() {
-    return 0;
+    if (this.getItemsPrice() >= this.priceForFreeShipping) {
+      return 0;
+    }
+    return this.shippingPrice;
   }
 
   getTotalPrice() {

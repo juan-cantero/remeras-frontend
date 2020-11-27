@@ -10,6 +10,7 @@ import {
   ordersByUserReducer,
   orderListReducer,
   orderDeliverReducer,
+  orderMarkAsPaidReducer,
 } from './order/reducers';
 import mercadoPagoPayReducer from './mercadopago/mercadoPagoState';
 
@@ -32,6 +33,13 @@ import {
   productListReducer,
   productUpdateReducer,
 } from './products/reducers';
+import shippingCostListReducer from './shippingcost/list';
+import shippingCostDeleteReducer from './shippingcost/delete';
+import shippingCostCreateReducer from './shippingcost/create';
+import {
+  shippingCostGetReducer,
+  shippingCostUpdateReducer,
+} from './shippingcost/reducers';
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -54,9 +62,15 @@ const reducer = combineReducers({
   orderPay: orderPayReducer,
   myOrders: ordersByUserReducer,
   orderDeliver: orderDeliverReducer,
+  orderMarkAsPaid: orderMarkAsPaidReducer,
   mercadoPagoPay: mercadoPagoPayReducer,
   resetPassword: resetPasswordReducer,
   setNewPassword: setNewPasswordReducer,
+  shippingCostList: shippingCostListReducer,
+  shippingCostDelete: shippingCostDeleteReducer,
+  shippingCostCreate: shippingCostCreateReducer,
+  shippingCostUpdate: shippingCostUpdateReducer,
+  shippingCostGet: shippingCostGetReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
@@ -73,6 +87,7 @@ const initialState = {
   cart: {
     cartItems: cartItemsFromStorage,
     shippingAddress: shippingAddressFromLocalStorage,
+    shippingPrice: 0,
   },
   userLogin: { userInfo: userInfoFromStorage },
 };

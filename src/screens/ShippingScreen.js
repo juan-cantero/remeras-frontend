@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Button,
   Form,
@@ -12,12 +12,26 @@ import CheckOutSteps from '../components/checkOut/CheckOutSteps';
 import ConditionalError from '../components/ui-layout/ConditionalError';
 import FormContainer from '../components/ui-layout/FormContainer';
 import isEmptyObject from '../helpers/object/isEmptyObject';
-import { saveShippingAddress } from '../state/cart/cartState';
+import {
+  saveShippingAddress,
+  saveShippingPrice,
+} from '../state/cart/cartState';
+import { listShippingCost } from '../state/shippingcost/list';
 import shippingFormSchema from '../validation/shippingFormValidation';
 
 const ShippingScreen = ({ history }) => {
   const dispatch = useDispatch();
   const { shippingAddress } = useSelector((state) => state.cart);
+  const { loading, error, shippingCosts } = useSelector(
+    (state) => state.shippingCostList
+  );
+
+  useEffect(() => {
+    if (shippingCosts.length === 0) {
+      dispatch(listShippingCost());
+    }
+  }, [shippingCosts, dispatch]);
+
   let address = '';
   let city = '';
   let locality = '';
@@ -29,7 +43,7 @@ const ShippingScreen = ({ history }) => {
     locality = shippingAddress.locality;
     postalCode = shippingAddress.postalCode;
   }
-
+  if (loading) return null;
   return (
     <Formik
       initialValues={{
@@ -42,6 +56,10 @@ const ShippingScreen = ({ history }) => {
       onSubmit={(values) => {
         const { address, city, locality, postalCode } = values;
         dispatch(saveShippingAddress({ address, city, locality, postalCode }));
+        const shippingCost = shippingCosts.filter(
+          (s) => s.locality === locality
+        );
+        dispatch(saveShippingPrice(shippingCost[0].price));
         history.push('/payment');
       }}
     >
@@ -59,6 +77,38 @@ const ShippingScreen = ({ history }) => {
             <CheckOutSteps login shipping />
             <h2>Direccion de envio</h2>
             <Form onSubmit={handleSubmit}>
+              <FormGroup controlId="city">
+                <FormLabel>Ciudad</FormLabel>
+                <FormControl
+                  as="select"
+                  name="city"
+                  value={values.city}
+                  isValid={touched.city && !errors.city}
+                  onChange={handleChange}
+                >
+                  <option value="">Seleccione una Ciudad</option>
+                  <option value="Buenos Aires">Buenos Aires</option>
+                </FormControl>
+              </FormGroup>
+
+              <FormGroup controlId="locality">
+                <FormLabel>Localidad</FormLabel>
+                <FormControl
+                  as="select"
+                  name="locality"
+                  value={values.locality}
+                  isValid={touched.locality && !errors.locality}
+                  onChange={handleChange}
+                >
+                  <option value="select">Elige un partido</option>
+                  {shippingCosts.map((s) => (
+                    <option key={s._id} value={s.locality}>
+                      {s.locality}
+                    </option>
+                  ))}
+                </FormControl>
+              </FormGroup>
+
               <FormGroup controlId="street">
                 <FormLabel>Calle</FormLabel>
                 <FormControl
@@ -77,40 +127,6 @@ const ShippingScreen = ({ history }) => {
                 />
               </FormGroup>
 
-              <FormGroup controlId="city">
-                <FormLabel>Ciudad</FormLabel>
-                <FormControl
-                  type="text"
-                  placeholder="Ciudad"
-                  value={values.city}
-                  onBlur={handleBlur}
-                  name="city"
-                  isValid={touched.city && !errors.city}
-                  onChange={handleChange}
-                />
-                <ConditionalError
-                  errors={errors}
-                  errorProp="city"
-                  isTouched={touched.city}
-                />
-              </FormGroup>
-              <FormGroup controlId="locality">
-                <FormLabel>Localidad</FormLabel>
-                <FormControl
-                  type="text"
-                  placeholder="Localidad"
-                  value={values.locality}
-                  onBlur={handleBlur}
-                  name="locality"
-                  isValid={touched.locality && !errors.locality}
-                  onChange={handleChange}
-                />
-                <ConditionalError
-                  errors={errors}
-                  errorProp="locality"
-                  isTouched={touched.locality}
-                />
-              </FormGroup>
               <FormGroup controlId="postal code">
                 <FormLabel>Codigo Postal</FormLabel>
                 <FormControl

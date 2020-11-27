@@ -15,10 +15,12 @@ import ProductsSummary from '../components/order/ProductsSummary';
 import ShippingItem from '../components/order/ShippingItem';
 import Loader from '../components/ui-layout/Loader';
 import Message from '../components/ui-layout/Message';
-import isEmptyObject from '../helpers/object/isEmptyObject';
-import PriceCalculator from '../helpers/order/PriceCalculator';
 import useAuth from '../hooks/useAuth';
-import { getOrderDetail, markOrderAsDelivered } from '../state/order/actions';
+import {
+  getOrderDetail,
+  markOrderAsDelivered,
+  markOrderAsPaid,
+} from '../state/order/actions';
 
 const OrderDetailScreen = ({ match }) => {
   const orderId = match.params.id;
@@ -26,27 +28,35 @@ const OrderDetailScreen = ({ match }) => {
   const [isAuthenticated, isAdmin] = useAuth();
   const { order, loading, error } = useSelector((state) => state.orderDetail);
 
-  // const {loading:loadingOnOrderPay,error:errorOnOrderPay,success:successOnOrderPay} = useSelector(state => state.orderPay);
   const {
     loading: loadingOnOrderDeliver,
     error: errorOnOrderDeliver,
     success: successOnOrderDeliver,
   } = useSelector((state) => state.orderDeliver);
-  let itemsPrice, shippingPrice, totalPrice;
 
-  if (!isEmptyObject(order)) {
-    let priceCalculator = new PriceCalculator(order.orderItems);
-    itemsPrice = priceCalculator.getItemsPrice();
-    shippingPrice = priceCalculator.getShippingPrice();
-    totalPrice = priceCalculator.getTotalPrice();
-  }
+  const {
+    loading: loadingOnMarkAsPaid,
+    error: errorOnMarkAsPaid,
+    success: successOnMarkAsPaid,
+  } = useSelector((state) => state.orderMarkAsPaid);
 
   useEffect(() => {
     dispatch(getOrderDetail(orderId));
-  }, [orderId, dispatch, successOnOrderDeliver]);
+  }, [
+    orderId,
+    dispatch,
+    successOnOrderDeliver,
+    successOnMarkAsPaid,
+    loadingOnOrderDeliver,
+    loadingOnMarkAsPaid,
+  ]);
 
   const handleDelivered = () => {
     dispatch(markOrderAsDelivered(orderId));
+  };
+
+  const handlePaid = () => {
+    dispatch(markOrderAsPaid(orderId));
   };
 
   return loading ? (
@@ -89,20 +99,20 @@ const OrderDetailScreen = ({ match }) => {
               <ListGroupItem>
                 <Row>
                   <Col>Productos</Col>
-                  <Col>$ {itemsPrice}</Col>
+                  <Col>$ {order.itemsPrice}</Col>
                 </Row>
               </ListGroupItem>
             </ListGroup>
             <ListGroupItem>
               <Row>
                 <Col>Precio de Envio</Col>
-                <Col>$ {shippingPrice}</Col>
+                <Col>$ {order.shippingPrice}</Col>
               </Row>
             </ListGroupItem>
             <ListGroupItem>
               <Row>
                 <Col>Total</Col>
-                <Col>$ {totalPrice}</Col>
+                <Col>$ {order.totalPrice}</Col>
               </Row>
             </ListGroupItem>
 
@@ -115,6 +125,19 @@ const OrderDetailScreen = ({ match }) => {
                   onClick={handleDelivered}
                 >
                   Marcar como enviado
+                </Button>
+              </ListGroupItem>
+            )}
+
+            {isAuthenticated && isAdmin && !order.isPaid && (
+              <ListGroupItem>
+                <Button
+                  type="button"
+                  variant="success"
+                  className="btn-block"
+                  onClick={handlePaid}
+                >
+                  Marcar como pago
                 </Button>
               </ListGroupItem>
             )}

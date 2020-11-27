@@ -47,6 +47,7 @@ const PlaceOrderScreen = ({ history }) => {
             shippingAddress={cart.shippingAddress}
             items={cart.cartItems}
             paymentMethod={cart.paymentMethod}
+            shippingPrice={cart.shippingPrice}
           />
         </Col>
       </Row>
