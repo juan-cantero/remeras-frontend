@@ -24,6 +24,7 @@ import Switch from 'react-bootstrap/esm/Switch';
 import FilteredByGenreScreen from '../screens/FilteredByGenreScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 import NewPasswordScreen from '../screens/NewPasswordScreen';
+import FailureScreen from '../screens/FailureScreen';
 
 const AppRouter = () => {
   const [isAuthenticated, isAdmin] = useAuth();
@@ -32,6 +33,7 @@ const AppRouter = () => {
       <Layout>
         <Switch>
           <Route path="/success" component={SuccessScreen} />
+          <Route path="/failure" component={FailureScreen} />
           <Route path="/detail/order/:id" component={OrderDetailScreen} />
           <Route path="/order/:id" component={OrderScreen} />
           <PrivateRoute

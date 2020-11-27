@@ -29,7 +29,7 @@ const PayCash = ({ items }) => {
         <a
           rel="noreferrer"
           target="_blank"
-          href={`https://api.whatsapp.com/send?phone=${121212}`}
+          href={`https://api.whatsapp.com/send?phone=${5491153451277}`}
         >
           <div className="Whatsapp-button" />
         </a>
