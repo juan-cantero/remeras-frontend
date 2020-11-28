@@ -11,30 +11,13 @@ import { Link } from 'react-router-dom';
 const SuccessScreen = ({ location }) => {
   const { loading, success, error } = useSelector((state) => state.orderPay);
 
-  const [paymentDetails, setPaymentDetails] = useState(null);
   const parsed = queryString.parse(location.search);
   const { payment_id, external_reference } = parsed;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getPaymentDetailsFromMercadoLibre = async (payment_id) => {
-      const { data } = await Axios.get(
-        `https://api.mercadopago.com/v1/payments/${payment_id}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer TEST-3021176599215207-111516-7f1563a653b2df0477a99d566e76d447-672855699`,
-          },
-        }
-      );
-      setPaymentDetails(data);
-      dispatch(payOrder(external_reference, paymentDetails));
-    };
-    if (paymentDetails === null) {
-      getPaymentDetailsFromMercadoLibre(payment_id);
-      console.log(paymentDetails);
-    }
-  }, [paymentDetails, payment_id, dispatch, external_reference]);
+    dispatch(payOrder(external_reference));
+  }, [payment_id, dispatch, external_reference]);
 
   return loading ? (
     <Loader />

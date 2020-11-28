@@ -8,7 +8,7 @@ const ORDER_PAY_FAILS = 'ORDER_PAY_FAILS';
 
 //actions
 
-export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
+export const payOrder = (id) => async (dispatch, getState) => {
   dispatch({ type: ORDER_PAY_REQUEST });
   const {
     userLogin: { userInfo },
@@ -21,11 +21,7 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
     },
   };
   try {
-    const { data } = await remerasApi.put(
-      `/orders/${id}/pay`,
-      paymentResult,
-      config
-    );
+    const { data } = await remerasApi.put(`/orders/${id}/pay`, {}, config);
     dispatch({ type: ORDER_PAY_SUCESS, payload: data });
   } catch (error) {
     dispatch({
