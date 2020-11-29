@@ -1,8 +1,8 @@
 import { listShippingCost } from './list';
-import { removeShippingCost } from './delete';
+import { removeShippingCost, removeShippingCostReset } from './delete';
 import { createShippingCost, createShippingCostReset } from './create';
 import { updateShippingCost, shippingCostUpdateReset } from './update';
-import { getShippingCost } from './get';
+import { getShippingCost, shippingCostGetReset } from './get';
 
 export {
   listShippingCost,
@@ -12,4 +12,6 @@ export {
   updateShippingCost,
   shippingCostUpdateReset,
   getShippingCost,
+  removeShippingCostReset,
+  shippingCostGetReset,
 };

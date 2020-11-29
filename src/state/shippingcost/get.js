@@ -3,6 +3,7 @@ import remerasApi from '../../api/remerasApi';
 const SHIPPINGCOST_GET_REQUEST = 'SHIPPINGCOST_GET_REQUEST';
 const SHIPPINGCOST_GET_SUCCESS = 'SHIPPINGCOST_GET_SUCCESS';
 const SHIPPINGCOST_GET_FAILS = 'SHIPPINGCOST_GET_FAILS';
+const SHIPPINGCOST_GET_RESET = 'SHIPPINGCOST_GET_RESET';
 
 export const getShippingCost = (id) => async (dispatch, getState) => {
   dispatch({ type: SHIPPINGCOST_GET_REQUEST });
@@ -31,6 +32,8 @@ export const getShippingCost = (id) => async (dispatch, getState) => {
   }
 };
 
+export const shippingCostGetReset = () => ({ type: SHIPPINGCOST_GET_RESET });
+
 const initialState = {
   shippingCostDetail: null,
   loading: false,
@@ -46,7 +49,13 @@ const shippingCostGetReducer = (state = initialState, action) => {
 
     case SHIPPINGCOST_GET_FAILS:
       return { ...state, loading: false, error: action.payload };
-
+    case SHIPPINGCOST_GET_RESET:
+      return {
+        ...state,
+        loading: false,
+        shippingCostDetail: null,
+        error: null,
+      };
     default:
       return state;
   }

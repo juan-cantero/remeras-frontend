@@ -9,7 +9,10 @@ import {
   createShippingCost,
   createShippingCostReset,
 } from '../state/shippingcost/actions';
-import { removeShippingCost } from '../state/shippingcost/delete';
+import {
+  removeShippingCost,
+  removeShippingCostReset,
+} from '../state/shippingcost/delete';
 import { listShippingCost } from '../state/shippingcost/list';
 
 const ShippingCostScreen = ({ history }) => {
@@ -33,6 +36,8 @@ const ShippingCostScreen = ({ history }) => {
 
   useEffect(() => {
     dispatch(createShippingCostReset());
+    dispatch(removeShippingCostReset());
+
     if (createSuccess) {
       history.push(`/admin/shippingcost/${createdShippingCost._id}/edit`);
     }
