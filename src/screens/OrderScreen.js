@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Col, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
+import { Alert, Col, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import PayMercadoPago from '../components/order/PayMercadoPago';
@@ -53,6 +53,15 @@ const OrderScreen = ({ match }) => {
         </Col>
 
         <Col md={4}>
+          <Alert className="text-center" variant="warning">
+            <Alert.Heading>
+              Esta solo a un paso de finalizar su compra
+            </Alert.Heading>
+            <p>
+              Si decidio abonar con mercado pago, por favor espero a ser
+              redireccionado a nuestro sitio luego del pago.
+            </p>
+          </Alert>
           {order.paymentMethod === 'mercadopago' ? (
             <PayMercadoPago
               error={errorPayment}

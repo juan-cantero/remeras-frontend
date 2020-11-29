@@ -6,7 +6,11 @@ const Footer = () => {
     <footer className="Footer">
       <Container>
         <Row>
-          <Col className="text-center py-3">copyright &copy;Re-meras</Col>
+          <Col className="text-center py-3">copyright &copy;Remerasjacqui</Col>
+          <Col className="text-center py-3">
+            Hecho por{' '}
+            <a href="mailto:juan.cantero@outlook.com">Juan Carlos Cantero</a>
+          </Col>
         </Row>
       </Container>
     </footer>

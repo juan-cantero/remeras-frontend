@@ -86,7 +86,6 @@ const ShippingScreen = ({ history }) => {
                   isValid={touched.city && !errors.city}
                   onChange={handleChange}
                 >
-                  <option value="">Seleccione una Ciudad</option>
                   <option value="Buenos Aires">Buenos Aires</option>
                 </FormControl>
               </FormGroup>
@@ -100,7 +99,6 @@ const ShippingScreen = ({ history }) => {
                   isValid={touched.locality && !errors.locality}
                   onChange={handleChange}
                 >
-                  <option value="select">Elige un partido</option>
                   {shippingCosts.map((s) => (
                     <option key={s._id} value={s.locality}>
                       {s.locality}
